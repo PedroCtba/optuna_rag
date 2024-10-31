@@ -3,26 +3,16 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# Importar classe de retrieval chain, que pega os documentos relevantes do Pinecone
+# Importar pacotes do langchain
 from langchain.chains.retrieval import create_retrieval_chain
-
-# Importar hub para prompts já feitos
 from langchain import hub
-
-# Pega o prompt, coloca a docuemtação nele, e envia opara o LLM
 from langchain.chains.combine_documents import create_stuff_documents_chain
-
-# Chain ue remonta pergunta principal (qquery) quando há um hisórico de chat
 from langchain.chains.history_aware_retriever import create_history_aware_retriever
-
-# Importar buscador de contexto pinecone
 from langchain_pinecone import PineconeVectorStore
-
-# Importar pacote de embeddings da voyage ai
 from langchain_voyageai import VoyageAIEmbeddings
 
-# Importar modelo claude
-from langchain_anthropic import ChatAnthropic
+# Importar AI da Groq (Fonte de LLM)
+from langchain_groq import ChatGroq
 
 # Definir função para rodar llm RAG
 def run_llm(query, chat_history=[]):
@@ -32,8 +22,8 @@ def run_llm(query, chat_history=[]):
     # Setar o objeto de busca de similaridade no Pinecone
     docseacrh = PineconeVectorStore(index_name=os.environ["INDEX_NAME"], embedding=emmbeding)
 
-    # Setar modelo de chat
-    chat = ChatAnthropic(model="claude-3-opus-20240229", temperature=0)
+    # Setar modelo e temperatura
+    chat = ChatGroq(model="llama-3.1-70b-versatile", temperature=0)
 
     # Fazer prompt de retrieval QA
     retrieval_qa_chat_prompt = hub.pull("langchain-ai/retrieval-qa-chat")
