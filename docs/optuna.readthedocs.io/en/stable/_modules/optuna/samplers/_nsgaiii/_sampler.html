@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>optuna.samplers._nsgaiii._sampler &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "_modules/optuna/samplers/_nsgaiii/_sampler", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/_modules/optuna/samplers/_nsgaiii/_sampler.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html">
+            
+              <img src="../../../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">optuna.samplers._nsgaiii._sampler</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for optuna.samplers._nsgaiii._sampler</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+<span class="kn">from</span> <span class="nn">optuna._experimental</span> <span class="kn">import</span> <span class="n">experimental_class</span>
+<span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">BaseDistribution</span>
+<span class="kn">from</span> <span class="nn">optuna.samplers._base</span> <span class="kn">import</span> <span class="n">BaseSampler</span>
+<span class="kn">from</span> <span class="nn">optuna.samplers._lazy_random_state</span> <span class="kn">import</span> <span class="n">LazyRandomState</span>
+<span class="kn">from</span> <span class="nn">optuna.samplers._nsgaiii._elite_population_selection_strategy</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">NSGAIIIElitePopulationSelectionStrategy</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">optuna.samplers._random</span> <span class="kn">import</span> <span class="n">RandomSampler</span>
+<span class="kn">from</span> <span class="nn">optuna.samplers.nsgaii._after_trial_strategy</span> <span class="kn">import</span> <span class="n">NSGAIIAfterTrialStrategy</span>
+<span class="kn">from</span> <span class="nn">optuna.samplers.nsgaii._child_generation_strategy</span> <span class="kn">import</span> <span class="n">NSGAIIChildGenerationStrategy</span>
+<span class="kn">from</span> <span class="nn">optuna.samplers.nsgaii._crossovers._base</span> <span class="kn">import</span> <span class="n">BaseCrossover</span>
+<span class="kn">from</span> <span class="nn">optuna.samplers.nsgaii._crossovers._uniform</span> <span class="kn">import</span> <span class="n">UniformCrossover</span>
+<span class="kn">from</span> <span class="nn">optuna.search_space</span> <span class="kn">import</span> <span class="n">IntersectionSearchSpace</span>
+<span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">FrozenTrial</span>
+<span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">TrialState</span>
+
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">optuna.study</span> <span class="kn">import</span> <span class="n">Study</span>
+
+
+<span class="c1"># Define key names of `Trial.system_attrs`.</span>
+<span class="n">_GENERATION_KEY</span> <span class="o">=</span> <span class="s2">&quot;nsga3:generation&quot;</span>
+<span class="n">_POPULATION_CACHE_KEY_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;nsga3:population&quot;</span>
+
+
+<div class="viewcode-block" id="NSGAIIISampler">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.NSGAIIISampler.html#optuna.samplers.NSGAIIISampler">[docs]</a>
+<span class="nd">@experimental_class</span><span class="p">(</span><span class="s2">&quot;3.2.0&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">NSGAIIISampler</span><span class="p">(</span><span class="n">BaseSampler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Multi-objective sampler using the NSGA-III algorithm.</span>
+
+<span class="sd">    NSGA-III stands for &quot;Nondominated Sorting Genetic Algorithm III&quot;,</span>
+<span class="sd">    which is a modified version of NSGA-II for many objective optimization problem.</span>
+
+<span class="sd">    For further information about NSGA-III, please refer to the following papers:</span>
+
+<span class="sd">    - `An Evolutionary Many-Objective Optimization Algorithm Using Reference-Point-Based</span>
+<span class="sd">      Nondominated Sorting Approach, Part I: Solving Problems With Box Constraints</span>
+<span class="sd">      &lt;https://doi.org/10.1109/TEVC.2013.2281535&gt;`__</span>
+<span class="sd">    - `An Evolutionary Many-Objective Optimization Algorithm Using Reference-Point-Based</span>
+<span class="sd">      Nondominated Sorting Approach, Part II: Handling Constraints and Extending to an Adaptive</span>
+<span class="sd">      Approach</span>
+<span class="sd">      &lt;https://doi.org/10.1109/TEVC.2013.2281534&gt;`__</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        reference_points:</span>
+<span class="sd">            A 2 dimension ``numpy.ndarray`` with objective dimension columns. Represents</span>
+<span class="sd">            a list of reference points which is used to determine who to survive.</span>
+<span class="sd">            After non-dominated sort, who out of borderline front are going to survived is</span>
+<span class="sd">            determined according to how sparse the closest reference point of each individual is.</span>
+<span class="sd">            In the default setting the algorithm uses `uniformly` spread points to diversify the</span>
+<span class="sd">            result. It is also possible to reflect your `preferences` by giving an arbitrary set of</span>
+<span class="sd">            `target` points since the algorithm prioritizes individuals around reference points.</span>
+
+<span class="sd">        dividing_parameter:</span>
+<span class="sd">            A parameter to determine the density of default reference points. This parameter</span>
+<span class="sd">            determines how many divisions are made between reference points on each axis. The</span>
+<span class="sd">            smaller this value is, the less reference points you have. The default value is 3.</span>
+<span class="sd">            Note that this parameter is not used when ``reference_points`` is not :obj:`None`.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        Other parameters than ``reference_points`` and ``dividing_parameter`` are the same as</span>
+<span class="sd">        :class:`~optuna.samplers.NSGAIISampler`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">population_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="n">mutation_prob</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">crossover</span><span class="p">:</span> <span class="n">BaseCrossover</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">crossover_prob</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">swapping_prob</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">constraints_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">FrozenTrial</span><span class="p">],</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">reference_points</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dividing_parameter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="n">elite_population_selection_strategy</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">Study</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">FrozenTrial</span><span class="p">]],</span> <span class="nb">list</span><span class="p">[</span><span class="n">FrozenTrial</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">child_generation_strategy</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">Study</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">FrozenTrial</span><span class="p">]],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+            <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">after_trial_strategy</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">Study</span><span class="p">,</span> <span class="n">FrozenTrial</span><span class="p">,</span> <span class="n">TrialState</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># TODO(ohta): Reconsider the default value of each parameter.</span>
+
+        <span class="k">if</span> <span class="n">population_size</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`population_size` must be greater than or equal to 2.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">crossover</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">crossover</span> <span class="o">=</span> <span class="n">UniformCrossover</span><span class="p">(</span><span class="n">swapping_prob</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">crossover</span><span class="p">,</span> <span class="n">BaseCrossover</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">crossover</span><span class="si">}</span><span class="s2">&#39; is not a valid crossover.&quot;</span>
+                <span class="s2">&quot; For valid crossovers see&quot;</span>
+                <span class="s2">&quot; https://optuna.readthedocs.io/en/stable/reference/samplers.html.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">population_size</span> <span class="o">&lt;</span> <span class="n">crossover</span><span class="o">.</span><span class="n">n_parents</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Using </span><span class="si">{</span><span class="n">crossover</span><span class="si">}</span><span class="s2">,&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot; the population size should be greater than or equal to </span><span class="si">{</span><span class="n">crossover</span><span class="o">.</span><span class="n">n_parents</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot; The specified `population_size` is </span><span class="si">{</span><span class="n">population_size</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_population_size</span> <span class="o">=</span> <span class="n">population_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_random_sampler</span> <span class="o">=</span> <span class="n">RandomSampler</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rng</span> <span class="o">=</span> <span class="n">LazyRandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constraints_func</span> <span class="o">=</span> <span class="n">constraints_func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_search_space</span> <span class="o">=</span> <span class="n">IntersectionSearchSpace</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_elite_population_selection_strategy</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">elite_population_selection_strategy</span>
+            <span class="ow">or</span> <span class="n">NSGAIIIElitePopulationSelectionStrategy</span><span class="p">(</span>
+                <span class="n">population_size</span><span class="o">=</span><span class="n">population_size</span><span class="p">,</span>
+                <span class="n">constraints_func</span><span class="o">=</span><span class="n">constraints_func</span><span class="p">,</span>
+                <span class="n">reference_points</span><span class="o">=</span><span class="n">reference_points</span><span class="p">,</span>
+                <span class="n">dividing_parameter</span><span class="o">=</span><span class="n">dividing_parameter</span><span class="p">,</span>
+                <span class="n">rng</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_rng</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_child_generation_strategy</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">child_generation_strategy</span>
+            <span class="ow">or</span> <span class="n">NSGAIIChildGenerationStrategy</span><span class="p">(</span>
+                <span class="n">crossover_prob</span><span class="o">=</span><span class="n">crossover_prob</span><span class="p">,</span>
+                <span class="n">mutation_prob</span><span class="o">=</span><span class="n">mutation_prob</span><span class="p">,</span>
+                <span class="n">swapping_prob</span><span class="o">=</span><span class="n">swapping_prob</span><span class="p">,</span>
+                <span class="n">crossover</span><span class="o">=</span><span class="n">crossover</span><span class="p">,</span>
+                <span class="n">constraints_func</span><span class="o">=</span><span class="n">constraints_func</span><span class="p">,</span>
+                <span class="n">rng</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_rng</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_after_trial_strategy</span> <span class="o">=</span> <span class="n">after_trial_strategy</span> <span class="ow">or</span> <span class="n">NSGAIIAfterTrialStrategy</span><span class="p">(</span>
+            <span class="n">constraints_func</span><span class="o">=</span><span class="n">constraints_func</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="NSGAIIISampler.reseed_rng">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.NSGAIIISampler.html#optuna.samplers.NSGAIIISampler.reseed_rng">[docs]</a>
+    <span class="k">def</span> <span class="nf">reseed_rng</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_random_sampler</span><span class="o">.</span><span class="n">reseed_rng</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rng</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">seed</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="NSGAIIISampler.infer_relative_search_space">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.NSGAIIISampler.html#optuna.samplers.NSGAIIISampler.infer_relative_search_space">[docs]</a>
+    <span class="k">def</span> <span class="nf">infer_relative_search_space</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">]:</span>
+        <span class="n">search_space</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">distribution</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_search_space</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">study</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">distribution</span><span class="o">.</span><span class="n">single</span><span class="p">():</span>
+                <span class="c1"># The `untransform` method of `optuna._transform._SearchSpaceTransform`</span>
+                <span class="c1"># does not assume a single value,</span>
+                <span class="c1"># so single value objects are not sampled with the `sample_relative` method,</span>
+                <span class="c1"># but with the `sample_independent` method.</span>
+                <span class="k">continue</span>
+            <span class="n">search_space</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">distribution</span>
+        <span class="k">return</span> <span class="n">search_space</span></div>
+
+
+<div class="viewcode-block" id="NSGAIIISampler.sample_relative">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.NSGAIIISampler.html#optuna.samplers.NSGAIIISampler.sample_relative">[docs]</a>
+    <span class="k">def</span> <span class="nf">sample_relative</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span>
+        <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span><span class="p">,</span>
+        <span class="n">search_space</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="n">parent_generation</span><span class="p">,</span> <span class="n">parent_population</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collect_parent_population</span><span class="p">(</span><span class="n">study</span><span class="p">)</span>
+
+        <span class="n">generation</span> <span class="o">=</span> <span class="n">parent_generation</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">study</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">set_trial_system_attr</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">,</span> <span class="n">_GENERATION_KEY</span><span class="p">,</span> <span class="n">generation</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">parent_generation</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_child_generation_strategy</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">search_space</span><span class="p">,</span> <span class="n">parent_population</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NSGAIIISampler.sample_independent">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.NSGAIIISampler.html#optuna.samplers.NSGAIIISampler.sample_independent">[docs]</a>
+    <span class="k">def</span> <span class="nf">sample_independent</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span>
+        <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span><span class="p">,</span>
+        <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">param_distribution</span><span class="p">:</span> <span class="n">BaseDistribution</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="c1"># Following parameters are randomly sampled here.</span>
+        <span class="c1"># 1. A parameter in the initial population/first generation.</span>
+        <span class="c1"># 2. A parameter to mutate.</span>
+        <span class="c1"># 3. A parameter excluded from the intersection search space.</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_random_sampler</span><span class="o">.</span><span class="n">sample_independent</span><span class="p">(</span>
+            <span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">param_distribution</span>
+        <span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_collect_parent_population</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">FrozenTrial</span><span class="p">]]:</span>
+        <span class="n">trials</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">get_trials</span><span class="p">(</span><span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">generation_to_runnings</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">generation_to_population</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">trials</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">_GENERATION_KEY</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">trial</span><span class="o">.</span><span class="n">system_attrs</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">generation</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">system_attrs</span><span class="p">[</span><span class="n">_GENERATION_KEY</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">trial</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">trial</span><span class="o">.</span><span class="n">TrialState</span><span class="o">.</span><span class="n">COMPLETE</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">trial</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">optuna</span><span class="o">.</span><span class="n">trial</span><span class="o">.</span><span class="n">TrialState</span><span class="o">.</span><span class="n">RUNNING</span><span class="p">:</span>
+                    <span class="n">generation_to_runnings</span><span class="p">[</span><span class="n">generation</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Do not use trials whose states are not COMPLETE, or `constraint` will be unavailable.</span>
+            <span class="n">generation_to_population</span><span class="p">[</span><span class="n">generation</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+
+        <span class="n">hasher</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">()</span>
+        <span class="n">parent_population</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">FrozenTrial</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">parent_generation</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">generation</span> <span class="o">=</span> <span class="n">parent_generation</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">population</span> <span class="o">=</span> <span class="n">generation_to_population</span><span class="p">[</span><span class="n">generation</span><span class="p">]</span>
+
+            <span class="c1"># Under multi-worker settings, the population size might become larger than</span>
+            <span class="c1"># `self._population_size`.</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_population_size</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="c1"># [NOTE]</span>
+            <span class="c1"># It&#39;s generally safe to assume that once the above condition is satisfied,</span>
+            <span class="c1"># there are no additional individuals added to the generation (i.e., the members of</span>
+            <span class="c1"># the generation have been fixed).</span>
+            <span class="c1"># If the number of parallel workers is huge, this assumption can be broken, but</span>
+            <span class="c1"># this is a very rare case and doesn&#39;t significantly impact optimization performance.</span>
+            <span class="c1"># So we can ignore the case.</span>
+
+            <span class="c1"># The cache key is calculated based on the key of the previous generation and</span>
+            <span class="c1"># the remaining running trials in the current population.</span>
+            <span class="c1"># If there are no running trials, the new cache key becomes exactly the same as</span>
+            <span class="c1"># the previous one, and the cached content will be overwritten. This allows us to</span>
+            <span class="c1"># skip redundant cache key calculations when this method is called for the subsequent</span>
+            <span class="c1"># trials.</span>
+            <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">generation_to_runnings</span><span class="p">[</span><span class="n">generation</span><span class="p">]:</span>
+                <span class="n">hasher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="p">),</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+
+            <span class="n">cache_key</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_POPULATION_CACHE_KEY_PREFIX</span><span class="p">,</span> <span class="n">hasher</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
+            <span class="n">study_system_attrs</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">get_study_system_attrs</span><span class="p">(</span><span class="n">study</span><span class="o">.</span><span class="n">_study_id</span><span class="p">)</span>
+            <span class="n">cached_generation</span><span class="p">,</span> <span class="n">cached_population_numbers</span> <span class="o">=</span> <span class="n">study_system_attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">cache_key</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">cached_generation</span> <span class="o">&gt;=</span> <span class="n">generation</span><span class="p">:</span>
+                <span class="n">generation</span> <span class="o">=</span> <span class="n">cached_generation</span>
+                <span class="n">population</span> <span class="o">=</span> <span class="p">[</span><span class="n">trials</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">cached_population_numbers</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">population</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">parent_population</span><span class="p">)</span>
+                <span class="n">population</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_elite_population_selection_strategy</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">population</span><span class="p">)</span>
+
+                <span class="c1"># To reduce the number of system attribute entries,</span>
+                <span class="c1"># we cache the population information only if there are no running trials</span>
+                <span class="c1"># (i.e., the information of the population has been fixed).</span>
+                <span class="c1"># Usually, if there are no too delayed running trials, the single entry</span>
+                <span class="c1"># will be used.</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">generation_to_runnings</span><span class="p">[</span><span class="n">generation</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">population_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">number</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">population</span><span class="p">]</span>
+                    <span class="n">study</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">set_study_system_attr</span><span class="p">(</span>
+                        <span class="n">study</span><span class="o">.</span><span class="n">_study_id</span><span class="p">,</span> <span class="n">cache_key</span><span class="p">,</span> <span class="p">(</span><span class="n">generation</span><span class="p">,</span> <span class="n">population_numbers</span><span class="p">)</span>
+                    <span class="p">)</span>
+
+            <span class="n">parent_generation</span> <span class="o">=</span> <span class="n">generation</span>
+            <span class="n">parent_population</span> <span class="o">=</span> <span class="n">population</span>
+
+        <span class="k">return</span> <span class="n">parent_generation</span><span class="p">,</span> <span class="n">parent_population</span>
+
+<div class="viewcode-block" id="NSGAIIISampler.before_trial">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.NSGAIIISampler.html#optuna.samplers.NSGAIIISampler.before_trial">[docs]</a>
+    <span class="k">def</span> <span class="nf">before_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_random_sampler</span><span class="o">.</span><span class="n">before_trial</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NSGAIIISampler.after_trial">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.NSGAIIISampler.html#optuna.samplers.NSGAIIISampler.after_trial">[docs]</a>
+    <span class="k">def</span> <span class="nf">after_trial</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span>
+        <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">TrialState</span><span class="p">,</span>
+        <span class="n">values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">state</span> <span class="ow">in</span> <span class="p">[</span><span class="n">TrialState</span><span class="o">.</span><span class="n">COMPLETE</span><span class="p">,</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">FAIL</span><span class="p">,</span> <span class="n">TrialState</span><span class="o">.</span><span class="n">PRUNED</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_after_trial_strategy</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_random_sampler</span><span class="o">.</span><span class="n">after_trial</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

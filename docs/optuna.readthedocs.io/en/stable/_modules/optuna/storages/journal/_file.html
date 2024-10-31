@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>optuna.storages.journal._file &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "_modules/optuna/storages/journal/_file", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/_modules/optuna/storages/journal/_file.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html">
+            
+              <img src="../../../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">optuna.storages.journal._file</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for optuna.storages.journal._file</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">import</span> <span class="nn">errno</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterator</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+
+<span class="kn">from</span> <span class="nn">optuna._deprecated</span> <span class="kn">import</span> <span class="n">deprecated_class</span>
+<span class="kn">from</span> <span class="nn">optuna.storages.journal._base</span> <span class="kn">import</span> <span class="n">BaseJournalBackend</span>
+
+
+<span class="n">LOCK_FILE_SUFFIX</span> <span class="o">=</span> <span class="s2">&quot;.lock&quot;</span>
+<span class="n">RENAME_FILE_SUFFIX</span> <span class="o">=</span> <span class="s2">&quot;.rename&quot;</span>
+
+
+<div class="viewcode-block" id="JournalFileBackend">
+<a class="viewcode-back" href="../../../../reference/generated/optuna.storages.journal.JournalFileBackend.html#optuna.storages.JournalFileBackend">[docs]</a>
+<span class="k">class</span> <span class="nc">JournalFileBackend</span><span class="p">(</span><span class="n">BaseJournalBackend</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;File storage class for Journal log backend.</span>
+
+<span class="sd">    Compared to SQLite3, the benefit of this backend is that it is more suitable for</span>
+<span class="sd">    environments where the file system does not support ``fcntl()`` file locking.</span>
+<span class="sd">    For example, as written in the `SQLite3 FAQ &lt;https://www.sqlite.org/faq.html#q5&gt;`__,</span>
+<span class="sd">    SQLite3 might not work on NFS (Network File System) since ``fcntl()`` file locking</span>
+<span class="sd">    is broken on many NFS implementations. In such scenarios, this backend provides</span>
+<span class="sd">    several workarounds for locking files. For more details, refer to the `Medium blog post`_.</span>
+
+<span class="sd">    .. _Medium blog post: https://medium.com/optuna/distributed-optimization-via-nfs\</span>
+<span class="sd">    -using-optunas-new-operation-based-logging-storage-9815f9c3f932</span>
+
+<span class="sd">    It&#39;s important to note that, similar to SQLite3, this class doesn&#39;t support a high</span>
+<span class="sd">    level of write concurrency, as outlined in the `SQLAlchemy documentation`_. However,</span>
+<span class="sd">    in typical situations where the objective function is computationally expensive, Optuna</span>
+<span class="sd">    users don&#39;t need to be concerned about this limitation. The reason being, the write</span>
+<span class="sd">    operations are not the bottleneck as long as the objective function doesn&#39;t invoke</span>
+<span class="sd">    :meth:`~optuna.trial.Trial.report` and :meth:`~optuna.trial.Trial.set_user_attr` excessively.</span>
+
+<span class="sd">    .. _SQLAlchemy documentation: https://docs.sqlalchemy.org/en/20/dialects/sqlite.html\</span>
+<span class="sd">    #database-locking-behavior-concurrency</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_path:</span>
+<span class="sd">            Path of file to persist the log to.</span>
+
+<span class="sd">        lock_obj:</span>
+<span class="sd">            Lock object for process exclusivity. An instance of</span>
+<span class="sd">            :class:`~optuna.storages.journal.JournalFileSymlinkLock` and</span>
+<span class="sd">            :class:`~optuna.storages.journal.JournalFileOpenLock` can be passed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lock_obj</span><span class="p">:</span> <span class="n">BaseJournalFileLock</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">file_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">lock_obj</span> <span class="ow">or</span> <span class="n">JournalFileSymlinkLock</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file_path</span><span class="p">):</span>
+            <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file_path</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># Create a file if it does not exist.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_number_offset</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+<div class="viewcode-block" id="JournalFileBackend.read_logs">
+<a class="viewcode-back" href="../../../../reference/generated/optuna.storages.journal.JournalFileBackend.html#optuna.storages.JournalFileBackend.read_logs">[docs]</a>
+    <span class="k">def</span> <span class="nf">read_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_number_from</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+        <span class="n">logs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="c1"># Maintain remaining_log_size to allow writing by another process</span>
+            <span class="c1"># while reading the log.</span>
+            <span class="n">remaining_log_size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file_path</span><span class="p">)</span><span class="o">.</span><span class="n">st_size</span>
+            <span class="n">log_number_start</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">log_number_from</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_number_offset</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_number_offset</span><span class="p">[</span><span class="n">log_number_from</span><span class="p">])</span>
+                <span class="n">log_number_start</span> <span class="o">=</span> <span class="n">log_number_from</span>
+                <span class="n">remaining_log_size</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_number_offset</span><span class="p">[</span><span class="n">log_number_from</span><span class="p">]</span>
+
+            <span class="n">last_decode_error</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">log_number</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">log_number_start</span><span class="p">):</span>
+                <span class="n">byte_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="n">remaining_log_size</span> <span class="o">-=</span> <span class="n">byte_len</span>
+                <span class="k">if</span> <span class="n">remaining_log_size</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="k">if</span> <span class="n">last_decode_error</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">last_decode_error</span>
+                <span class="k">if</span> <span class="n">log_number</span> <span class="o">+</span> <span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_number_offset</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_log_number_offset</span><span class="p">[</span><span class="n">log_number</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_log_number_offset</span><span class="p">[</span><span class="n">log_number</span><span class="p">]</span> <span class="o">+</span> <span class="n">byte_len</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">log_number</span> <span class="o">&lt;</span> <span class="n">log_number_from</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># Ensure that each line ends with line separators (\n, \r\n).</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+                    <span class="n">last_decode_error</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid log format.&quot;</span><span class="p">)</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_number_offset</span><span class="p">[</span><span class="n">log_number</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                    <span class="k">continue</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">logs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+                <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                    <span class="n">last_decode_error</span> <span class="o">=</span> <span class="n">err</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_number_offset</span><span class="p">[</span><span class="n">log_number</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">logs</span></div>
+
+
+<div class="viewcode-block" id="JournalFileBackend.append_logs">
+<a class="viewcode-back" href="../../../../reference/generated/optuna.storages.journal.JournalFileBackend.html#optuna.storages.JournalFileBackend.append_logs">[docs]</a>
+    <span class="k">def</span> <span class="nf">append_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">get_lock_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">):</span>
+            <span class="n">what_to_write</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file_path</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">what_to_write</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">fsync</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span></div>
+</div>
+
+
+
+<span class="k">class</span> <span class="nc">BaseJournalFileLock</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+<div class="viewcode-block" id="JournalFileSymlinkLock">
+<a class="viewcode-back" href="../../../../reference/generated/optuna.storages.journal.JournalFileSymlinkLock.html#optuna.storages.JournalFileSymlinkLock">[docs]</a>
+<span class="k">class</span> <span class="nc">JournalFileSymlinkLock</span><span class="p">(</span><span class="n">BaseJournalFileLock</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lock class for synchronizing processes for NFSv2 or later.</span>
+
+<span class="sd">    On acquiring the lock, link system call is called to create an exclusive file. The file is</span>
+<span class="sd">    deleted when the lock is released. In NFS environments prior to NFSv3, use this instead of</span>
+<span class="sd">    :class:`~optuna.storages.journal.JournalFileOpenLock`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filepath:</span>
+<span class="sd">            The path of the file whose race condition must be protected.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock_target_file</span> <span class="o">=</span> <span class="n">filepath</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock_file</span> <span class="o">=</span> <span class="n">filepath</span> <span class="o">+</span> <span class="n">LOCK_FILE_SUFFIX</span>
+
+<div class="viewcode-block" id="JournalFileSymlinkLock.acquire">
+<a class="viewcode-back" href="../../../../reference/generated/optuna.storages.journal.JournalFileSymlinkLock.html#optuna.storages.JournalFileSymlinkLock.acquire">[docs]</a>
+    <span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Acquire a lock in a blocking way by creating a symbolic link of a file.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :obj:`True` if it succeeded in creating a symbolic link of ``self._lock_target_file``.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sleep_secs</span> <span class="o">=</span> <span class="mf">0.001</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">symlink</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lock_target_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock_file</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">errno</span><span class="o">.</span><span class="n">EEXIST</span><span class="p">:</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_secs</span><span class="p">)</span>
+                    <span class="n">sleep_secs</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">sleep_secs</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="k">raise</span> <span class="n">err</span>
+            <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+                <span class="k">raise</span></div>
+
+
+<div class="viewcode-block" id="JournalFileSymlinkLock.release">
+<a class="viewcode-back" href="../../../../reference/generated/optuna.storages.journal.JournalFileSymlinkLock.html#optuna.storages.JournalFileSymlinkLock.release">[docs]</a>
+    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Release a lock by removing the symbolic link.&quot;&quot;&quot;</span>
+
+        <span class="n">lock_rename_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock_file</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span> <span class="o">+</span> <span class="n">RENAME_FILE_SUFFIX</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lock_file</span><span class="p">,</span> <span class="n">lock_rename_file</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">lock_rename_file</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Error: did not possess lock&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">lock_rename_file</span><span class="p">)</span>
+            <span class="k">raise</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="JournalFileOpenLock">
+<a class="viewcode-back" href="../../../../reference/generated/optuna.storages.journal.JournalFileOpenLock.html#optuna.storages.JournalFileOpenLock">[docs]</a>
+<span class="k">class</span> <span class="nc">JournalFileOpenLock</span><span class="p">(</span><span class="n">BaseJournalFileLock</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lock class for synchronizing processes for NFSv3 or later.</span>
+
+<span class="sd">    On acquiring the lock, open system call is called with the O_EXCL option to create an exclusive</span>
+<span class="sd">    file. The file is deleted when the lock is released. This class is only supported when using</span>
+<span class="sd">    NFSv3 or later on kernel 2.6 or later. In prior NFS environments, use</span>
+<span class="sd">    :class:`~optuna.storages.journal.JournalFileSymlinkLock`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filepath:</span>
+<span class="sd">            The path of the file whose race condition must be protected.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock_file</span> <span class="o">=</span> <span class="n">filepath</span> <span class="o">+</span> <span class="n">LOCK_FILE_SUFFIX</span>
+
+<div class="viewcode-block" id="JournalFileOpenLock.acquire">
+<a class="viewcode-back" href="../../../../reference/generated/optuna.storages.journal.JournalFileOpenLock.html#optuna.storages.JournalFileOpenLock.acquire">[docs]</a>
+    <span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Acquire a lock in a blocking way by creating a lock file.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :obj:`True` if it succeeded in creating a ``self._lock_file``.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sleep_secs</span> <span class="o">=</span> <span class="mf">0.001</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">open_flags</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">O_CREAT</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">O_EXCL</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">O_WRONLY</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lock_file</span><span class="p">,</span> <span class="n">open_flags</span><span class="p">))</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">errno</span><span class="o">.</span><span class="n">EEXIST</span><span class="p">:</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_secs</span><span class="p">)</span>
+                    <span class="n">sleep_secs</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">sleep_secs</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="k">raise</span> <span class="n">err</span>
+            <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+                <span class="k">raise</span></div>
+
+
+<div class="viewcode-block" id="JournalFileOpenLock.release">
+<a class="viewcode-back" href="../../../../reference/generated/optuna.storages.journal.JournalFileOpenLock.html#optuna.storages.JournalFileOpenLock.release">[docs]</a>
+    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Release a lock by removing the created file.&quot;&quot;&quot;</span>
+
+        <span class="n">lock_rename_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock_file</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span> <span class="o">+</span> <span class="n">RENAME_FILE_SUFFIX</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_lock_file</span><span class="p">,</span> <span class="n">lock_rename_file</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">lock_rename_file</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Error: did not possess lock&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">lock_rename_file</span><span class="p">)</span>
+            <span class="k">raise</span></div>
+</div>
+
+
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">get_lock_file</span><span class="p">(</span><span class="n">lock_obj</span><span class="p">:</span> <span class="n">BaseJournalFileLock</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="kc">None</span><span class="p">]:</span>
+    <span class="n">lock_obj</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">lock_obj</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="JournalFileStorage">
+<a class="viewcode-back" href="../../../../reference/generated/optuna.storages.JournalFileStorage.html#optuna.storages.JournalFileStorage">[docs]</a>
+<span class="nd">@deprecated_class</span><span class="p">(</span>
+    <span class="s2">&quot;4.0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;6.0.0&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Use :class:`~optuna.storages.journal.JournalFileBackend` instead.&quot;</span>
+<span class="p">)</span>
+<span class="k">class</span> <span class="nc">JournalFileStorage</span><span class="p">(</span><span class="n">JournalFileBackend</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+
+<span class="nd">@deprecated_class</span><span class="p">(</span>
+    <span class="n">deprecated_version</span><span class="o">=</span><span class="s2">&quot;4.0.0&quot;</span><span class="p">,</span>
+    <span class="n">removed_version</span><span class="o">=</span><span class="s2">&quot;6.0.0&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;The import path :class:`~optuna.storages.JournalFileOpenLock`&quot;</span><span class="p">,</span>
+    <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Use :class:`~optuna.storages.journal.JournalFileOpenLock` instead.&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">class</span> <span class="nc">DeprecatedJournalFileOpenLock</span><span class="p">(</span><span class="n">JournalFileOpenLock</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="nd">@deprecated_class</span><span class="p">(</span>
+    <span class="n">deprecated_version</span><span class="o">=</span><span class="s2">&quot;4.0.0&quot;</span><span class="p">,</span>
+    <span class="n">removed_version</span><span class="o">=</span><span class="s2">&quot;6.0.0&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;The import path :class:`~optuna.storages.JournalFileSymlinkLock`&quot;</span><span class="p">,</span>
+    <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Use :class:`~optuna.storages.journal.JournalFileSymlinkLock` instead.&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">class</span> <span class="nc">DeprecatedJournalFileSymlinkLock</span><span class="p">(</span><span class="n">JournalFileSymlinkLock</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>plot_contour &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="plot_edf" href="optuna.visualization.matplotlib.edf.html" />
+    <link rel="prev" title="matplotlib" href="../index.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "reference/visualization/matplotlib/generated/optuna.visualization.matplotlib.contour", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/reference/visualization/matplotlib/generated/optuna.visualization.matplotlib.contour.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html">
+            
+              <img src="../../../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../optuna.html">optuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../artifacts.html">optuna.artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cli.html">optuna.cli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../distributions.html">optuna.distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../exceptions.html">optuna.exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../importance.html">optuna.importance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../integration.html">optuna.integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging.html">optuna.logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pruners.html">optuna.pruners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../samplers/index.html">optuna.samplers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_space.html">optuna.search_space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../storages.html">optuna.storages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../study.html">optuna.study</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../terminator.html">optuna.terminator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../trial.html">optuna.trial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">optuna.visualization</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_contour.html">plot_contour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_edf.html">plot_edf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_hypervolume_history.html">plot_hypervolume_history</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_intermediate_values.html">plot_intermediate_values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_optimization_history.html">plot_optimization_history</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_parallel_coordinate.html">plot_parallel_coordinate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_param_importances.html">plot_param_importances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_pareto_front.html">plot_pareto_front</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_rank.html">plot_rank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_slice.html">plot_slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_terminator_improvement.html">plot_terminator_improvement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/optuna.visualization.plot_timeline.html">plot_timeline</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">matplotlib</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">plot_contour</a></li>
+<li class="toctree-l4"><a class="reference internal" href="optuna.visualization.matplotlib.edf.html">plot_edf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="optuna.visualization.matplotlib.hypervolume_history.html">plot_hypervolume_history</a></li>
+<li class="toctree-l4"><a class="reference internal" href="optuna.visualization.matplotlib.intermediate_values.html">plot_intermediate_values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="optuna.visualization.matplotlib.optimization_history.html">plot_optimization_history</a></li>
+<li class="toctree-l4"><a class="reference internal" href="optuna.visualization.matplotlib.parallel_coordinate.html">plot_parallel_coordinate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="optuna.visualization.matplotlib.param_importances.html">plot_param_importances</a></li>
+<li class="toctree-l4"><a class="reference internal" href="optuna.visualization.matplotlib.pareto_front.html">plot_pareto_front</a></li>
+<li class="toctree-l4"><a class="reference internal" href="optuna.visualization.matplotlib.rank.html">plot_rank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="optuna.visualization.matplotlib.slice.html">plot_slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="optuna.visualization.matplotlib.terminator_improvement.html">plot_terminator_improvement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="optuna.visualization.matplotlib.timeline.html">plot_timeline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">optuna.visualization</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">matplotlib</a></li>
+      <li class="breadcrumb-item active">plot_contour</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-reference-visualization-matplotlib-generated-optuna-visualization-matplotlib-contour-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="plot-contour">
+<span id="sphx-glr-reference-visualization-matplotlib-generated-optuna-visualization-matplotlib-contour-py"></span><h1>plot_contour<a class="headerlink" href="#plot-contour" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="optuna.visualization.matplotlib.plot_contour">
+<span class="sig-prename descclassname"><span class="pre">optuna.visualization.matplotlib.</span></span><span class="sig-name descname"><span class="pre">plot_contour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Objective</span> <span class="pre">Value'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/optuna/visualization/matplotlib/_contour.html#plot_contour"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optuna.visualization.matplotlib.plot_contour" title="Link to this definition"></a></dt>
+<dd><p>Plot the parameter relationship as contour plot in a study with Matplotlib.</p>
+<p>Note that, if a parameter contains missing values, a trial with missing values is not plotted.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Please refer to <a class="reference internal" href="../../generated/optuna.visualization.plot_contour.html#optuna.visualization.plot_contour" title="optuna.visualization.plot_contour"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.visualization.plot_contour()</span></code></a> for an example.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Output figures of this Matplotlib-based
+<a class="reference internal" href="#optuna.visualization.matplotlib.plot_contour" title="optuna.visualization.matplotlib.plot_contour"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_contour()</span></code></a> function would be different from
+those of the Plotly-based <a class="reference internal" href="../../generated/optuna.visualization.plot_contour.html#optuna.visualization.plot_contour" title="optuna.visualization.plot_contour"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot_contour()</span></code></a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> (<a class="reference internal" href="../../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.study.Study"><em>Study</em></a>) – A <a class="reference internal" href="../../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object whose trials are plotted for their target values.</p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>] </em><em>| </em><em>None</em>) – Parameter list to visualize. The default is all parameters.</p></li>
+<li><p><strong>target</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.12)"><em>Callable</em></a><em>[</em><em>[</em><a class="reference internal" href="../../../generated/optuna.trial.FrozenTrial.html#optuna.trial.FrozenTrial" title="optuna.trial._frozen.FrozenTrial"><em>FrozenTrial</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>] </em><em>| </em><em>None</em>) – <p>A function to specify the value to display. If it is <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> and <code class="docutils literal notranslate"><span class="pre">study</span></code> is being
+used for single-objective optimization, the objective values are plotted.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Specify this argument if <code class="docutils literal notranslate"><span class="pre">study</span></code> is being used for multi-objective optimization.</p>
+</div>
+</p></li>
+<li><p><strong>target_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Target’s name to display on the color bar.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="(in Matplotlib v3.9.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code></a> object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="(in Matplotlib v3.9.2)"><em>Axes</em></a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The colormap is reversed when the <code class="docutils literal notranslate"><span class="pre">target</span></code> argument isn’t <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> or <code class="docutils literal notranslate"><span class="pre">direction</span></code>
+of <a class="reference internal" href="../../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> is <code class="docutils literal notranslate"><span class="pre">minimize</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Added in v2.2.0 as an experimental feature. The interface may change in newer versions
+without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v2.2.0">https://github.com/optuna/optuna/releases/tag/v2.2.0</a>.</p>
+</div>
+</dd></dl>
+
+<p>The following code snippet shows how to plot the parameter relationship as contour plot.</p>
+<img src="../../../../_images/sphx_glr_optuna.visualization.matplotlib.contour_001.png" srcset="../../../../_images/sphx_glr_optuna.visualization.matplotlib.contour_001.png" alt="Contour Plot" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/docs/checkouts/readthedocs.org/user_builds/optuna/checkouts/stable/docs/visualization_matplotlib_examples/optuna.visualization.matplotlib.contour.py:25: ExperimentalWarning:
+
+plot_contour is experimental (supported from v2.2.0). The interface can change in the future.
+
+
+&lt;Axes: title={&#39;center&#39;: &#39;Contour Plot&#39;}, xlabel=&#39;x&#39;, ylabel=&#39;y&#39;&gt;
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
+
+
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span>
+
+
+<span class="n">sampler</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/abc.html#abc.ABC" title="abc.ABC" class="sphx-glr-backref-module-abc sphx-glr-backref-type-py-class"><span class="n">optuna</span><span class="o">.</span><span class="n">samplers</span><span class="o">.</span><span class="n">TPESampler</span></a><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">)</span>
+<span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="n">optuna</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">plot_contour</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.383 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-reference-visualization-matplotlib-generated-optuna-visualization-matplotlib-contour-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../../_downloads/2da03b87a99267430b75cb01c2fa9557/optuna.visualization.matplotlib.contour.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">optuna.visualization.matplotlib.contour.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../../_downloads/b48f70f93a6756ded6ddd2b4acf3fe72/optuna.visualization.matplotlib.contour.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">optuna.visualization.matplotlib.contour.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../../../_downloads/67365fff8d0cea6bcd6d3427fe0e7210/optuna.visualization.matplotlib.contour.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">optuna.visualization.matplotlib.contour.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="matplotlib" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="optuna.visualization.matplotlib.edf.html" class="btn btn-neutral float-right" title="plot_edf" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

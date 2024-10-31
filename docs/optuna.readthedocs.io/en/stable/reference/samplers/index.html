@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>optuna.samplers &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=a56c686a"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="optuna.samplers.BaseSampler" href="generated/optuna.samplers.BaseSampler.html" />
+    <link rel="prev" title="optuna.pruners.WilcoxonPruner" href="../generated/optuna.pruners.WilcoxonPruner.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "reference/samplers/index", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/reference/samplers/index.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../optuna.html">optuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../artifacts.html">optuna.artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli.html">optuna.cli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../distributions.html">optuna.distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exceptions.html">optuna.exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../importance.html">optuna.importance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration.html">optuna.integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html">optuna.logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pruners.html">optuna.pruners</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">optuna.samplers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/optuna.samplers.BaseSampler.html">optuna.samplers.BaseSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/optuna.samplers.GridSampler.html">optuna.samplers.GridSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/optuna.samplers.RandomSampler.html">optuna.samplers.RandomSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/optuna.samplers.TPESampler.html">optuna.samplers.TPESampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/optuna.samplers.CmaEsSampler.html">optuna.samplers.CmaEsSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/optuna.samplers.GPSampler.html">optuna.samplers.GPSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/optuna.samplers.PartialFixedSampler.html">optuna.samplers.PartialFixedSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/optuna.samplers.NSGAIISampler.html">optuna.samplers.NSGAIISampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/optuna.samplers.NSGAIIISampler.html">optuna.samplers.NSGAIIISampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/optuna.samplers.QMCSampler.html">optuna.samplers.QMCSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/optuna.samplers.BruteForceSampler.html">optuna.samplers.BruteForceSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nsgaii.html">optuna.samplers.nsgaii</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../search_space.html">optuna.search_space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../storages.html">optuna.storages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../study.html">optuna.study</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../terminator.html">optuna.terminator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trial.html">optuna.trial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/index.html">optuna.visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">optuna.samplers</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="optuna-samplers">
+<span id="module-optuna.samplers"></span><h1>optuna.samplers<a class="headerlink" href="#optuna-samplers" title="Link to this heading"></a></h1>
+<p>The <a class="reference internal" href="#module-optuna.samplers" title="optuna.samplers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">samplers</span></code></a> module defines a base class for parameter sampling as described extensively in <a class="reference internal" href="generated/optuna.samplers.BaseSampler.html#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a>. The remaining classes in this module represent child classes, deriving from <a class="reference internal" href="generated/optuna.samplers.BaseSampler.html#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a>, which implement different sampling strategies.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../tutorial/10_key_features/003_efficient_optimization_algorithms.html#pruning"><span class="std std-ref">Efficient Optimization Algorithms</span></a> tutorial explains the overview of the sampler classes.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../tutorial/20_recipes/005_user_defined_sampler.html#user-defined-sampler"><span class="std std-ref">User-Defined Sampler</span></a> tutorial could be helpful if you want to implement your own sampler classes.</p>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>RandomSampler</p></th>
+<th class="head"><p>GridSampler</p></th>
+<th class="head"><p>TPESampler</p></th>
+<th class="head"><p>CmaEsSampler</p></th>
+<th class="head"><p>NSGAIISampler</p></th>
+<th class="head"><p>QMCSampler</p></th>
+<th class="head"><p>GPSampler</p></th>
+<th class="head"><p>BoTorchSampler</p></th>
+<th class="head"><p>BruteForceSampler</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Float parameters</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span> (<span class="math notranslate nohighlight">\(\color{red}\times\)</span> for infinite domain)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Integer parameters</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Categorical parameters</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Pruning</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}\times\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Multivariate optimization</p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Conditional search space</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Multi-objective optimization</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}\times\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span> (<span class="math notranslate nohighlight">\(\blacktriangle\)</span> for single-objective)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}\times\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Batch optimization</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Distributed optimization</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\blacktriangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Constrained optimization</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}\times\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}\times\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}\times\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}\times\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}\times\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}\times\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Time complexity (per trial) (*)</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(d)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(O(dn)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(O(dn \log n)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(O(d^3)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(O(mp^2)\)</span> (***)</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(dn)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(O(n^3)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(O(n^3)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(O(d)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Recommended budgets (#trials)
+(**)</p></td>
+<td><p>as many as one likes</p></td>
+<td><p>number of combinations</p></td>
+<td><p>100 – 1000</p></td>
+<td><p>1000 – 10000</p></td>
+<td><p>100 – 10000</p></td>
+<td><p>as many as one likes</p></td>
+<td><p>– 500</p></td>
+<td><p>10 – 100</p></td>
+<td><p>number of combinations</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\color{green}\checkmark\)</span>: Supports this feature.
+<span class="math notranslate nohighlight">\(\blacktriangle\)</span>: Works, but inefficiently.
+<span class="math notranslate nohighlight">\(\color{red}\times\)</span>: Causes an error, or has no interface.</p>
+<blockquote>
+<div><p>(*): We assumes that <span class="math notranslate nohighlight">\(d\)</span> is the dimension of the search space, <span class="math notranslate nohighlight">\(n\)</span> is the number of finished trials, <span class="math notranslate nohighlight">\(m\)</span> is the number of objectives, and <span class="math notranslate nohighlight">\(p\)</span> is the population size (algorithm specific parameter).
+This table shows the time complexity of the sampling algorithms. We may omit other terms that depend on the implementation in Optuna, including <span class="math notranslate nohighlight">\(O(d)\)</span> to call the sampling methods and <span class="math notranslate nohighlight">\(O(n)\)</span> to collect the completed trials.
+This means that, for example, the actual time complexity of <a class="reference internal" href="generated/optuna.samplers.RandomSampler.html#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomSampler</span></code></a> is <span class="math notranslate nohighlight">\(O(d+n+d) = O(d+n)\)</span>.
+From another perspective, with the exception of <a class="reference internal" href="generated/optuna.samplers.NSGAIISampler.html#optuna.samplers.NSGAIISampler" title="optuna.samplers.NSGAIISampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">NSGAIISampler</span></code></a>, all time complexity is written for single-objective optimization.</p>
+<p>(**): (1) The budget depends on the number of parameters and the number of objectives. (2) This budget includes <code class="docutils literal notranslate"><span class="pre">n_startup_trials</span></code> if a sampler has <code class="docutils literal notranslate"><span class="pre">n_startup_trials</span></code> as one of its arguments.</p>
+<p>(***): This time complexity assumes that the number of population size <span class="math notranslate nohighlight">\(p\)</span> and the number of parallelization are regular.
+This means that the number of parallelization should not exceed the number of population size <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</div></blockquote>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Samplers initialize their random number generators by specifying <code class="docutils literal notranslate"><span class="pre">seed</span></code> argument at initialization.
+However, samplers reseed them when <code class="docutils literal notranslate"><span class="pre">n_jobs!=1</span></code> of <a class="reference internal" href="../generated/optuna.study.Study.html#optuna.study.Study.optimize" title="optuna.study.Study.optimize"><code class="xref py py-func docutils literal notranslate"><span class="pre">optuna.study.Study.optimize()</span></code></a> to avoid sampling duplicated parameters by using the same generator.
+Thus we can hardly reproduce the optimization results with <code class="docutils literal notranslate"><span class="pre">n_jobs!=1</span></code>.
+For the same reason, make sure that use either <code class="docutils literal notranslate"><span class="pre">seed=None</span></code> or different <code class="docutils literal notranslate"><span class="pre">seed</span></code> values among processes with distributed optimization explained in <a class="reference internal" href="../../tutorial/10_key_features/004_distributed.html#distributed"><span class="std std-ref">Easy Parallelization</span></a> tutorial.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For float, integer, or categorical parameters, see <a class="reference internal" href="../../tutorial/10_key_features/002_configurations.html#configurations"><span class="std std-ref">Pythonic Search Space</span></a> tutorial.</p>
+<p>For pruning, see <a class="reference internal" href="../../tutorial/10_key_features/003_efficient_optimization_algorithms.html#pruning"><span class="std std-ref">Efficient Optimization Algorithms</span></a> tutorial.</p>
+<p>For multivariate optimization, see <a class="reference internal" href="generated/optuna.samplers.BaseSampler.html#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSampler</span></code></a>. The multivariate optimization is implemented as <a class="reference internal" href="generated/optuna.samplers.BaseSampler.html#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_relative()</span></code></a> in Optuna. Please check the concrete documents of samplers for more details.</p>
+<p>For conditional search space, see <a class="reference internal" href="../../tutorial/10_key_features/002_configurations.html#configurations"><span class="std std-ref">Pythonic Search Space</span></a> tutorial and <a class="reference internal" href="generated/optuna.samplers.TPESampler.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a>. The <code class="docutils literal notranslate"><span class="pre">group</span></code> option of <a class="reference internal" href="generated/optuna.samplers.TPESampler.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> allows <a class="reference internal" href="generated/optuna.samplers.TPESampler.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> to handle the conditional search space.</p>
+<p>For multi-objective optimization, see <a class="reference internal" href="../../tutorial/20_recipes/002_multi_objective.html#multi-objective"><span class="std std-ref">Multi-objective Optimization with Optuna</span></a> tutorial.</p>
+<p>For batch optimization, see <a class="reference internal" href="../../tutorial/20_recipes/009_ask_and_tell.html#batch-optimization"><span class="std std-ref">Batch Optimization</span></a> tutorial. Note that the <code class="docutils literal notranslate"><span class="pre">constant_liar</span></code> option of <a class="reference internal" href="generated/optuna.samplers.TPESampler.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> allows <a class="reference internal" href="generated/optuna.samplers.TPESampler.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> to handle the batch optimization.</p>
+<p>For distributed optimization, see <a class="reference internal" href="../../tutorial/10_key_features/004_distributed.html#distributed"><span class="std std-ref">Easy Parallelization</span></a> tutorial. Note that the <code class="docutils literal notranslate"><span class="pre">constant_liar</span></code> option of <a class="reference internal" href="generated/optuna.samplers.TPESampler.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> allows <a class="reference internal" href="generated/optuna.samplers.TPESampler.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">TPESampler</span></code></a> to handle the distributed optimization.</p>
+<p>For constrained optimization, see an <a class="reference external" href="https://github.com/optuna/optuna-examples/blob/main/multi_objective/botorch_simple.py">example</a>.</p>
+</div>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/optuna.samplers.BaseSampler.html#optuna.samplers.BaseSampler" title="optuna.samplers.BaseSampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.samplers.BaseSampler</span></code></a></p></td>
+<td><p>Base class for samplers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/optuna.samplers.GridSampler.html#optuna.samplers.GridSampler" title="optuna.samplers.GridSampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.samplers.GridSampler</span></code></a></p></td>
+<td><p>Sampler using grid search.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/optuna.samplers.RandomSampler.html#optuna.samplers.RandomSampler" title="optuna.samplers.RandomSampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.samplers.RandomSampler</span></code></a></p></td>
+<td><p>Sampler using random sampling.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/optuna.samplers.TPESampler.html#optuna.samplers.TPESampler" title="optuna.samplers.TPESampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.samplers.TPESampler</span></code></a></p></td>
+<td><p>Sampler using TPE (Tree-structured Parzen Estimator) algorithm.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/optuna.samplers.CmaEsSampler.html#optuna.samplers.CmaEsSampler" title="optuna.samplers.CmaEsSampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.samplers.CmaEsSampler</span></code></a></p></td>
+<td><p>A sampler using <a class="reference external" href="https://github.com/CyberAgentAILab/cmaes">cmaes</a> as the backend.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/optuna.samplers.GPSampler.html#optuna.samplers.GPSampler" title="optuna.samplers.GPSampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.samplers.GPSampler</span></code></a></p></td>
+<td><p>Sampler using Gaussian process-based Bayesian optimization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/optuna.samplers.PartialFixedSampler.html#optuna.samplers.PartialFixedSampler" title="optuna.samplers.PartialFixedSampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.samplers.PartialFixedSampler</span></code></a></p></td>
+<td><p>Sampler with partially fixed parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/optuna.samplers.NSGAIISampler.html#optuna.samplers.NSGAIISampler" title="optuna.samplers.NSGAIISampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.samplers.NSGAIISampler</span></code></a></p></td>
+<td><p>Multi-objective sampler using the NSGA-II algorithm.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/optuna.samplers.NSGAIIISampler.html#optuna.samplers.NSGAIIISampler" title="optuna.samplers.NSGAIIISampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.samplers.NSGAIIISampler</span></code></a></p></td>
+<td><p>Multi-objective sampler using the NSGA-III algorithm.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/optuna.samplers.QMCSampler.html#optuna.samplers.QMCSampler" title="optuna.samplers.QMCSampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.samplers.QMCSampler</span></code></a></p></td>
+<td><p>A Quasi Monte Carlo Sampler that generates low-discrepancy sequences.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/optuna.samplers.BruteForceSampler.html#optuna.samplers.BruteForceSampler" title="optuna.samplers.BruteForceSampler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">optuna.samplers.BruteForceSampler</span></code></a></p></td>
+<td><p>Sampler using brute force.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following <a class="reference internal" href="nsgaii.html#module-optuna.samplers.nsgaii" title="optuna.samplers.nsgaii"><code class="xref py py-mod docutils literal notranslate"><span class="pre">optuna.samplers.nsgaii</span></code></a> module defines crossover operations used by <a class="reference internal" href="generated/optuna.samplers.NSGAIISampler.html#optuna.samplers.NSGAIISampler" title="optuna.samplers.NSGAIISampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">NSGAIISampler</span></code></a>.</p>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nsgaii.html">optuna.samplers.nsgaii</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../generated/optuna.pruners.WilcoxonPruner.html" class="btn btn-neutral float-left" title="optuna.pruners.WilcoxonPruner" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generated/optuna.samplers.BaseSampler.html" class="btn btn-neutral float-right" title="optuna.samplers.BaseSampler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

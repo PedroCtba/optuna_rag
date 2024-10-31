@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>optuna.trial._trial &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "_modules/optuna/trial/_trial", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/_modules/optuna/trial/_trial.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">optuna.trial._trial</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for optuna.trial._trial</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">UserDict</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">overload</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">distributions</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">pruners</span>
+<span class="kn">from</span> <span class="nn">optuna._convert_positional_args</span> <span class="kn">import</span> <span class="n">convert_positional_args</span>
+<span class="kn">from</span> <span class="nn">optuna._deprecated</span> <span class="kn">import</span> <span class="n">deprecated_func</span>
+<span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">BaseDistribution</span>
+<span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">CategoricalChoiceType</span>
+<span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">CategoricalDistribution</span>
+<span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">FloatDistribution</span>
+<span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">IntDistribution</span>
+<span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">FrozenTrial</span>
+<span class="kn">from</span> <span class="nn">optuna.trial._base</span> <span class="kn">import</span> <span class="n">_SUGGEST_INT_POSITIONAL_ARGS</span>
+<span class="kn">from</span> <span class="nn">optuna.trial._base</span> <span class="kn">import</span> <span class="n">BaseTrial</span>
+
+
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">_suggest_deprecated_msg</span> <span class="o">=</span> <span class="s2">&quot;Use suggest_float</span><span class="si">{args}</span><span class="s2"> instead.&quot;</span>
+
+
+<div class="viewcode-block" id="Trial">
+<a class="viewcode-back" href="../../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial">[docs]</a>
+<span class="k">class</span> <span class="nc">Trial</span><span class="p">(</span><span class="n">BaseTrial</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A trial is a process of evaluating an objective function.</span>
+
+<span class="sd">    This object is passed to an objective function and provides interfaces to get parameter</span>
+<span class="sd">    suggestion, manage the trial&#39;s state, and set/get user-defined attributes of the trial.</span>
+
+<span class="sd">    Note that the direct use of this constructor is not recommended.</span>
+<span class="sd">    This object is seamlessly instantiated and passed to the objective function behind</span>
+<span class="sd">    the :func:`optuna.study.Study.optimize()` method; hence library users do not care about</span>
+<span class="sd">    instantiation of this object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        study:</span>
+<span class="sd">            A :class:`~optuna.study.Study` object.</span>
+<span class="sd">        trial_id:</span>
+<span class="sd">            A trial ID that is automatically generated.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="s2">&quot;optuna.study.Study&quot;</span><span class="p">,</span> <span class="n">trial_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">study</span> <span class="o">=</span> <span class="n">study</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span> <span class="o">=</span> <span class="n">trial_id</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">_storage</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">get_trial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">)</span>
+        <span class="n">study</span> <span class="o">=</span> <span class="n">pruners</span><span class="o">.</span><span class="n">_filter_study</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">before_trial</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">relative_search_space</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">infer_relative_search_space</span><span class="p">(</span>
+            <span class="n">study</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_relative_params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">system_attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fixed_params&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">relative_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_relative_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">study</span> <span class="o">=</span> <span class="n">pruners</span><span class="o">.</span><span class="n">_filter_study</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_relative_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">sample_relative</span><span class="p">(</span>
+                <span class="n">study</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_search_space</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_relative_params</span>
+
+<div class="viewcode-block" id="Trial.suggest_float">
+<a class="viewcode-back" href="../../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_float">[docs]</a>
+    <span class="k">def</span> <span class="nf">suggest_float</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">low</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">high</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">step</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">log</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Suggest a value for the floating point parameter.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">            Suggest a momentum, learning rate and scaling factor of learning rate</span>
+<span class="sd">            for neural network training.</span>
+
+<span class="sd">            .. testcode::</span>
+
+<span class="sd">                import numpy as np</span>
+<span class="sd">                from sklearn.datasets import load_iris</span>
+<span class="sd">                from sklearn.model_selection import train_test_split</span>
+<span class="sd">                from sklearn.neural_network import MLPClassifier</span>
+
+<span class="sd">                import optuna</span>
+
+<span class="sd">                X, y = load_iris(return_X_y=True)</span>
+<span class="sd">                X_train, X_valid, y_train, y_valid = train_test_split(X, y, random_state=0)</span>
+
+
+<span class="sd">                def objective(trial):</span>
+<span class="sd">                    momentum = trial.suggest_float(&quot;momentum&quot;, 0.0, 1.0)</span>
+<span class="sd">                    learning_rate_init = trial.suggest_float(</span>
+<span class="sd">                        &quot;learning_rate_init&quot;, 1e-5, 1e-3, log=True</span>
+<span class="sd">                    )</span>
+<span class="sd">                    power_t = trial.suggest_float(&quot;power_t&quot;, 0.2, 0.8, step=0.1)</span>
+<span class="sd">                    clf = MLPClassifier(</span>
+<span class="sd">                        hidden_layer_sizes=(100, 50),</span>
+<span class="sd">                        momentum=momentum,</span>
+<span class="sd">                        learning_rate_init=learning_rate_init,</span>
+<span class="sd">                        solver=&quot;sgd&quot;,</span>
+<span class="sd">                        random_state=0,</span>
+<span class="sd">                        power_t=power_t,</span>
+<span class="sd">                    )</span>
+<span class="sd">                    clf.fit(X_train, y_train)</span>
+
+<span class="sd">                    return clf.score(X_valid, y_valid)</span>
+
+
+<span class="sd">                study = optuna.create_study(direction=&quot;maximize&quot;)</span>
+<span class="sd">                study.optimize(objective, n_trials=3)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name:</span>
+<span class="sd">                A parameter name.</span>
+<span class="sd">            low:</span>
+<span class="sd">                Lower endpoint of the range of suggested values. ``low`` is included in the range.</span>
+<span class="sd">                ``low`` must be less than or equal to ``high``. If ``log`` is :obj:`True`,</span>
+<span class="sd">                ``low`` must be larger than 0.</span>
+<span class="sd">            high:</span>
+<span class="sd">                Upper endpoint of the range of suggested values. ``high`` is included in the range.</span>
+<span class="sd">                ``high`` must be greater than or equal to ``low``.</span>
+<span class="sd">            step:</span>
+<span class="sd">                A step of discretization.</span>
+
+<span class="sd">                .. note::</span>
+<span class="sd">                    The ``step`` and ``log`` arguments cannot be used at the same time. To set</span>
+<span class="sd">                    the ``step`` argument to a float number, set the ``log`` argument to</span>
+<span class="sd">                    :obj:`False`.</span>
+<span class="sd">            log:</span>
+<span class="sd">                A flag to sample the value from the log domain or not.</span>
+<span class="sd">                If ``log`` is true, the value is sampled from the range in the log domain.</span>
+<span class="sd">                Otherwise, the value is sampled from the range in the linear domain.</span>
+
+<span class="sd">                .. note::</span>
+<span class="sd">                    The ``step`` and ``log`` arguments cannot be used at the same time. To set</span>
+<span class="sd">                    the ``log`` argument to :obj:`True`, set the ``step`` argument to :obj:`None`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A suggested float value.</span>
+
+<span class="sd">        .. seealso::</span>
+<span class="sd">            :ref:`configurations` tutorial describes more details and flexible usages.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">distribution</span> <span class="o">=</span> <span class="n">FloatDistribution</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">log</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+        <span class="n">suggested_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_distribution</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">suggested_value</span></div>
+
+
+<div class="viewcode-block" id="Trial.suggest_uniform">
+<a class="viewcode-back" href="../../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_uniform">[docs]</a>
+    <span class="nd">@deprecated_func</span><span class="p">(</span><span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;6.0.0&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">_suggest_deprecated_msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">suggest_uniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Suggest a value for the continuous parameter.</span>
+
+<span class="sd">        The value is sampled from the range :math:`[\\mathsf{low}, \\mathsf{high})`</span>
+<span class="sd">        in the linear domain. When :math:`\\mathsf{low} = \\mathsf{high}`, the value of</span>
+<span class="sd">        :math:`\\mathsf{low}` will be returned.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name:</span>
+<span class="sd">                A parameter name.</span>
+<span class="sd">            low:</span>
+<span class="sd">                Lower endpoint of the range of suggested values. ``low`` is included in the range.</span>
+<span class="sd">            high:</span>
+<span class="sd">                Upper endpoint of the range of suggested values. ``high`` is included in the range.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A suggested float value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Trial.suggest_loguniform">
+<a class="viewcode-back" href="../../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_loguniform">[docs]</a>
+    <span class="nd">@deprecated_func</span><span class="p">(</span><span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;6.0.0&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">_suggest_deprecated_msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="s2">&quot;(..., log=True)&quot;</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">suggest_loguniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Suggest a value for the continuous parameter.</span>
+
+<span class="sd">        The value is sampled from the range :math:`[\\mathsf{low}, \\mathsf{high})`</span>
+<span class="sd">        in the log domain. When :math:`\\mathsf{low} = \\mathsf{high}`, the value of</span>
+<span class="sd">        :math:`\\mathsf{low}` will be returned.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name:</span>
+<span class="sd">                A parameter name.</span>
+<span class="sd">            low:</span>
+<span class="sd">                Lower endpoint of the range of suggested values. ``low`` is included in the range.</span>
+<span class="sd">            high:</span>
+<span class="sd">                Upper endpoint of the range of suggested values. ``high`` is included in the range.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A suggested float value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Trial.suggest_discrete_uniform">
+<a class="viewcode-back" href="../../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_discrete_uniform">[docs]</a>
+    <span class="nd">@deprecated_func</span><span class="p">(</span><span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;6.0.0&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">_suggest_deprecated_msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="s2">&quot;(..., step=...)&quot;</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">suggest_discrete_uniform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Suggest a value for the discrete parameter.</span>
+
+<span class="sd">        The value is sampled from the range :math:`[\\mathsf{low}, \\mathsf{high}]`,</span>
+<span class="sd">        and the step of discretization is :math:`q`. More specifically,</span>
+<span class="sd">        this method returns one of the values in the sequence</span>
+<span class="sd">        :math:`\\mathsf{low}, \\mathsf{low} + q, \\mathsf{low} + 2 q, \\dots,</span>
+<span class="sd">        \\mathsf{low} + k q \\le \\mathsf{high}`,</span>
+<span class="sd">        where :math:`k` denotes an integer. Note that :math:`high` may be changed due to round-off</span>
+<span class="sd">        errors if :math:`q` is not an integer. Please check warning messages to find the changed</span>
+<span class="sd">        values.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name:</span>
+<span class="sd">                A parameter name.</span>
+<span class="sd">            low:</span>
+<span class="sd">                Lower endpoint of the range of suggested values. ``low`` is included in the range.</span>
+<span class="sd">            high:</span>
+<span class="sd">                Upper endpoint of the range of suggested values. ``high`` is included in the range.</span>
+<span class="sd">            q:</span>
+<span class="sd">                A step of discretization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A suggested float value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">q</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Trial.suggest_int">
+<a class="viewcode-back" href="../../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_int">[docs]</a>
+    <span class="nd">@convert_positional_args</span><span class="p">(</span><span class="n">previous_positional_arg_names</span><span class="o">=</span><span class="n">_SUGGEST_INT_POSITIONAL_ARGS</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">suggest_int</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">low</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Suggest a value for the integer parameter.</span>
+
+<span class="sd">        The value is sampled from the integers in :math:`[\\mathsf{low}, \\mathsf{high}]`.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">            Suggest the number of trees in `RandomForestClassifier &lt;https://scikit-learn.org/</span>
+<span class="sd">            stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html&gt;`__.</span>
+
+<span class="sd">            .. testcode::</span>
+
+<span class="sd">                import numpy as np</span>
+<span class="sd">                from sklearn.datasets import load_iris</span>
+<span class="sd">                from sklearn.ensemble import RandomForestClassifier</span>
+<span class="sd">                from sklearn.model_selection import train_test_split</span>
+
+<span class="sd">                import optuna</span>
+
+<span class="sd">                X, y = load_iris(return_X_y=True)</span>
+<span class="sd">                X_train, X_valid, y_train, y_valid = train_test_split(X, y)</span>
+
+
+<span class="sd">                def objective(trial):</span>
+<span class="sd">                    n_estimators = trial.suggest_int(&quot;n_estimators&quot;, 50, 400)</span>
+<span class="sd">                    clf = RandomForestClassifier(n_estimators=n_estimators, random_state=0)</span>
+<span class="sd">                    clf.fit(X_train, y_train)</span>
+<span class="sd">                    return clf.score(X_valid, y_valid)</span>
+
+
+<span class="sd">                study = optuna.create_study(direction=&quot;maximize&quot;)</span>
+<span class="sd">                study.optimize(objective, n_trials=3)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name:</span>
+<span class="sd">                A parameter name.</span>
+<span class="sd">            low:</span>
+<span class="sd">                Lower endpoint of the range of suggested values. ``low`` is included in the range.</span>
+<span class="sd">                ``low`` must be less than or equal to ``high``. If ``log`` is :obj:`True`,</span>
+<span class="sd">                ``low`` must be larger than 0.</span>
+<span class="sd">            high:</span>
+<span class="sd">                Upper endpoint of the range of suggested values. ``high`` is included in the range.</span>
+<span class="sd">                ``high`` must be greater than or equal to ``low``.</span>
+<span class="sd">            step:</span>
+<span class="sd">                A step of discretization.</span>
+
+<span class="sd">                .. note::</span>
+<span class="sd">                    Note that :math:`\\mathsf{high}` is modified if the range is not divisible by</span>
+<span class="sd">                    :math:`\\mathsf{step}`. Please check the warning messages to find the changed</span>
+<span class="sd">                    values.</span>
+
+<span class="sd">                .. note::</span>
+<span class="sd">                    The method returns one of the values in the sequence</span>
+<span class="sd">                    :math:`\\mathsf{low}, \\mathsf{low} + \\mathsf{step}, \\mathsf{low} + 2 *</span>
+<span class="sd">                    \\mathsf{step}, \\dots, \\mathsf{low} + k * \\mathsf{step} \\le</span>
+<span class="sd">                    \\mathsf{high}`, where :math:`k` denotes an integer.</span>
+
+<span class="sd">                .. note::</span>
+<span class="sd">                    The ``step != 1`` and ``log`` arguments cannot be used at the same time.</span>
+<span class="sd">                    To set the ``step`` argument :math:`\\mathsf{step} \\ge 2`, set the</span>
+<span class="sd">                    ``log`` argument to :obj:`False`.</span>
+<span class="sd">            log:</span>
+<span class="sd">                A flag to sample the value from the log domain or not.</span>
+
+<span class="sd">                .. note::</span>
+<span class="sd">                    If ``log`` is true, at first, the range of suggested values is divided into</span>
+<span class="sd">                    grid points of width 1. The range of suggested values is then converted to</span>
+<span class="sd">                    a log domain, from which a value is sampled. The uniformly sampled</span>
+<span class="sd">                    value is re-converted to the original domain and rounded to the nearest grid</span>
+<span class="sd">                    point that we just split, and the suggested value is determined.</span>
+<span class="sd">                    For example, if `low = 2` and `high = 8`, then the range of suggested values is</span>
+<span class="sd">                    `[2, 3, 4, 5, 6, 7, 8]` and lower values tend to be more sampled than higher</span>
+<span class="sd">                    values.</span>
+
+<span class="sd">                .. note::</span>
+<span class="sd">                    The ``step != 1`` and ``log`` arguments cannot be used at the same time.</span>
+<span class="sd">                    To set the ``log`` argument to :obj:`True`, set the ``step`` argument to 1.</span>
+
+<span class="sd">        .. seealso::</span>
+<span class="sd">            :ref:`configurations` tutorial describes more details and flexible usages.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">distribution</span> <span class="o">=</span> <span class="n">IntDistribution</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">high</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">log</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+        <span class="n">suggested_value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_distribution</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">suggested_value</span></div>
+
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">suggest_categorical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">suggest_categorical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">suggest_categorical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">suggest_categorical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">suggest_categorical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span> <span class="nf">suggest_categorical</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">CategoricalChoiceType</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CategoricalChoiceType</span><span class="p">:</span> <span class="o">...</span>
+
+<div class="viewcode-block" id="Trial.suggest_categorical">
+<a class="viewcode-back" href="../../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.suggest_categorical">[docs]</a>
+    <span class="k">def</span> <span class="nf">suggest_categorical</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">CategoricalChoiceType</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CategoricalChoiceType</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Suggest a value for the categorical parameter.</span>
+
+<span class="sd">        The value is sampled from ``choices``.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">            Suggest a kernel function of `SVC &lt;https://scikit-learn.org/stable/modules/generated/</span>
+<span class="sd">            sklearn.svm.SVC.html&gt;`__.</span>
+
+<span class="sd">            .. testcode::</span>
+
+<span class="sd">                import numpy as np</span>
+<span class="sd">                from sklearn.datasets import load_iris</span>
+<span class="sd">                from sklearn.model_selection import train_test_split</span>
+<span class="sd">                from sklearn.svm import SVC</span>
+
+<span class="sd">                import optuna</span>
+
+<span class="sd">                X, y = load_iris(return_X_y=True)</span>
+<span class="sd">                X_train, X_valid, y_train, y_valid = train_test_split(X, y)</span>
+
+
+<span class="sd">                def objective(trial):</span>
+<span class="sd">                    kernel = trial.suggest_categorical(&quot;kernel&quot;, [&quot;linear&quot;, &quot;poly&quot;, &quot;rbf&quot;])</span>
+<span class="sd">                    clf = SVC(kernel=kernel, gamma=&quot;scale&quot;, random_state=0)</span>
+<span class="sd">                    clf.fit(X_train, y_train)</span>
+<span class="sd">                    return clf.score(X_valid, y_valid)</span>
+
+
+<span class="sd">                study = optuna.create_study(direction=&quot;maximize&quot;)</span>
+<span class="sd">                study.optimize(objective, n_trials=3)</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            name:</span>
+<span class="sd">                A parameter name.</span>
+<span class="sd">            choices:</span>
+<span class="sd">                Parameter value candidates.</span>
+
+<span class="sd">        .. seealso::</span>
+<span class="sd">            :class:`~optuna.distributions.CategoricalDistribution`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A suggested value.</span>
+
+<span class="sd">        .. seealso::</span>
+<span class="sd">            :ref:`configurations` tutorial describes more details and flexible usages.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># There is no need to call self._check_distribution because</span>
+        <span class="c1"># CategoricalDistribution does not support dynamic value space.</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">CategoricalDistribution</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">choices</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Trial.report">
+<a class="viewcode-back" href="../../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.report">[docs]</a>
+    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Report an objective function value for a given step.</span>
+
+<span class="sd">        The reported values are used by the pruners to determine whether this trial should be</span>
+<span class="sd">        pruned.</span>
+
+<span class="sd">        .. seealso::</span>
+<span class="sd">            Please refer to :class:`~optuna.pruners.BasePruner`.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            The reported value is converted to ``float`` type by applying ``float()``</span>
+<span class="sd">            function internally. Thus, it accepts all float-like types (e.g., ``numpy.float32``).</span>
+<span class="sd">            If the conversion fails, a ``TypeError`` is raised.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            If this method is called multiple times at the same ``step`` in a trial,</span>
+<span class="sd">            the reported ``value`` only the first time is stored and the reported values</span>
+<span class="sd">            from the second time are ignored.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            :func:`~optuna.trial.Trial.report` does not support multi-objective</span>
+<span class="sd">            optimization.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">            Report intermediate scores of `SGDClassifier &lt;https://scikit-learn.org/stable/modules/</span>
+<span class="sd">            generated/sklearn.linear_model.SGDClassifier.html&gt;`__ training.</span>
+
+<span class="sd">            .. testcode::</span>
+
+<span class="sd">                import numpy as np</span>
+<span class="sd">                from sklearn.datasets import load_iris</span>
+<span class="sd">                from sklearn.linear_model import SGDClassifier</span>
+<span class="sd">                from sklearn.model_selection import train_test_split</span>
+
+<span class="sd">                import optuna</span>
+
+<span class="sd">                X, y = load_iris(return_X_y=True)</span>
+<span class="sd">                X_train, X_valid, y_train, y_valid = train_test_split(X, y)</span>
+
+
+<span class="sd">                def objective(trial):</span>
+<span class="sd">                    clf = SGDClassifier(random_state=0)</span>
+<span class="sd">                    for step in range(100):</span>
+<span class="sd">                        clf.partial_fit(X_train, y_train, np.unique(y))</span>
+<span class="sd">                        intermediate_value = clf.score(X_valid, y_valid)</span>
+<span class="sd">                        trial.report(intermediate_value, step=step)</span>
+<span class="sd">                        if trial.should_prune():</span>
+<span class="sd">                            raise optuna.TrialPruned()</span>
+
+<span class="sd">                    return clf.score(X_valid, y_valid)</span>
+
+
+<span class="sd">                study = optuna.create_study(direction=&quot;maximize&quot;)</span>
+<span class="sd">                study.optimize(objective, n_trials=3)</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            value:</span>
+<span class="sd">                A value returned from the objective function.</span>
+<span class="sd">            step:</span>
+<span class="sd">                Step of the trial (e.g., Epoch of neural network training). Note that pruners</span>
+<span class="sd">                assume that ``step`` starts at zero. For example,</span>
+<span class="sd">                :class:`~optuna.pruners.MedianPruner` simply checks if ``step`` is less than</span>
+<span class="sd">                ``n_warmup_steps`` as the warmup mechanism.</span>
+<span class="sd">                ``step`` must be a positive integer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">directions</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s2">&quot;Trial.report is not supported for multi-objective optimization.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># For convenience, we allow users to report a value that can be cast to `float`.</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;The `value` argument is of type &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39; but supposed to be a float.&quot;</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;The `step` argument is of type &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">step</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39; but supposed to be an int.&quot;</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">step</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The `step` argument is </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2"> but cannot be negative.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">intermediate_values</span><span class="p">:</span>
+            <span class="c1"># Do nothing if already reported.</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;The reported value is ignored because this `step` </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2"> is already reported.&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">set_trial_intermediate_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">intermediate_values</span><span class="p">[</span><span class="n">step</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="Trial.should_prune">
+<a class="viewcode-back" href="../../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.should_prune">[docs]</a>
+    <span class="k">def</span> <span class="nf">should_prune</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Suggest whether the trial should be pruned or not.</span>
+
+<span class="sd">        The suggestion is made by a pruning algorithm associated with the trial and is based on</span>
+<span class="sd">        previously reported values. The algorithm can be specified when constructing a</span>
+<span class="sd">        :class:`~optuna.study.Study`.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            If no values have been reported, the algorithm cannot make meaningful suggestions.</span>
+<span class="sd">            Similarly, if this method is called multiple times with the exact same set of reported</span>
+<span class="sd">            values, the suggestions will be the same.</span>
+
+<span class="sd">        .. seealso::</span>
+<span class="sd">            Please refer to the example code in :func:`optuna.trial.Trial.report`.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            :func:`~optuna.trial.Trial.should_prune` does not support multi-objective</span>
+<span class="sd">            optimization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A boolean value. If :obj:`True`, the trial should be pruned according to the</span>
+<span class="sd">            configured pruning algorithm. Otherwise, the trial should continue.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">directions</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                <span class="s2">&quot;Trial.should_prune is not supported for multi-objective optimization.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_latest_trial</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">pruner</span><span class="o">.</span><span class="n">prune</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Trial.set_user_attr">
+<a class="viewcode-back" href="../../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.set_user_attr">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_user_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set user attributes to the trial.</span>
+
+<span class="sd">        The user attributes in the trial can be access via :func:`optuna.trial.Trial.user_attrs`.</span>
+
+<span class="sd">        .. seealso::</span>
+
+<span class="sd">            See the recipe on :ref:`attributes`.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">            Save fixed hyperparameters of neural network training.</span>
+
+<span class="sd">            .. testcode::</span>
+
+<span class="sd">                import numpy as np</span>
+<span class="sd">                from sklearn.datasets import load_iris</span>
+<span class="sd">                from sklearn.model_selection import train_test_split</span>
+<span class="sd">                from sklearn.neural_network import MLPClassifier</span>
+
+<span class="sd">                import optuna</span>
+
+<span class="sd">                X, y = load_iris(return_X_y=True)</span>
+<span class="sd">                X_train, X_valid, y_train, y_valid = train_test_split(X, y, random_state=0)</span>
+
+
+<span class="sd">                def objective(trial):</span>
+<span class="sd">                    trial.set_user_attr(&quot;BATCHSIZE&quot;, 128)</span>
+<span class="sd">                    momentum = trial.suggest_float(&quot;momentum&quot;, 0, 1.0)</span>
+<span class="sd">                    clf = MLPClassifier(</span>
+<span class="sd">                        hidden_layer_sizes=(100, 50),</span>
+<span class="sd">                        batch_size=trial.user_attrs[&quot;BATCHSIZE&quot;],</span>
+<span class="sd">                        momentum=momentum,</span>
+<span class="sd">                        solver=&quot;sgd&quot;,</span>
+<span class="sd">                        random_state=0,</span>
+<span class="sd">                    )</span>
+<span class="sd">                    clf.fit(X_train, y_train)</span>
+
+<span class="sd">                    return clf.score(X_valid, y_valid)</span>
+
+
+<span class="sd">                study = optuna.create_study(direction=&quot;maximize&quot;)</span>
+<span class="sd">                study.optimize(objective, n_trials=3)</span>
+<span class="sd">                assert &quot;BATCHSIZE&quot; in study.best_trial.user_attrs.keys()</span>
+<span class="sd">                assert study.best_trial.user_attrs[&quot;BATCHSIZE&quot;] == 128</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            key:</span>
+<span class="sd">                A key string of the attribute.</span>
+<span class="sd">            value:</span>
+<span class="sd">                A value of the attribute. The value should be JSON serializable.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">set_trial_user_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">user_attrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="Trial.set_system_attr">
+<a class="viewcode-back" href="../../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.set_system_attr">[docs]</a>
+    <span class="nd">@deprecated_func</span><span class="p">(</span><span class="s2">&quot;3.1.0&quot;</span><span class="p">,</span> <span class="s2">&quot;5.0.0&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">set_system_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set system attributes to the trial.</span>
+
+<span class="sd">        Note that Optuna internally uses this method to save system messages such as failure</span>
+<span class="sd">        reason of trials. Please use :func:`~optuna.trial.Trial.set_user_attr` to set users&#39;</span>
+<span class="sd">        attributes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            key:</span>
+<span class="sd">                A key string of the attribute.</span>
+<span class="sd">            value:</span>
+<span class="sd">                A value of the attribute. The value should be JSON serializable.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">set_trial_system_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">system_attrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_suggest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">distribution</span><span class="p">:</span> <span class="n">BaseDistribution</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="n">storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage</span>
+        <span class="n">trial_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span>
+
+        <span class="n">trial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_latest_trial</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">trial</span><span class="o">.</span><span class="n">distributions</span><span class="p">:</span>
+            <span class="c1"># No need to sample if already suggested.</span>
+            <span class="n">distributions</span><span class="o">.</span><span class="n">check_distribution_compatibility</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">distributions</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">distribution</span><span class="p">)</span>
+            <span class="n">param_value</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_fixed_param</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">):</span>
+                <span class="n">param_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">distribution</span><span class="o">.</span><span class="n">single</span><span class="p">():</span>
+                <span class="n">param_value</span> <span class="o">=</span> <span class="n">distributions</span><span class="o">.</span><span class="n">_get_single_value</span><span class="p">(</span><span class="n">distribution</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_relative_param</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">):</span>
+                <span class="n">param_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">study</span> <span class="o">=</span> <span class="n">pruners</span><span class="o">.</span><span class="n">_filter_study</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">)</span>
+                <span class="n">param_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">sample_independent</span><span class="p">(</span>
+                    <span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">distribution</span>
+                <span class="p">)</span>
+
+            <span class="c1"># `param_value` is validated here (invalid value like `np.nan` raises ValueError).</span>
+            <span class="n">param_value_in_internal_repr</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">to_internal_repr</span><span class="p">(</span><span class="n">param_value</span><span class="p">)</span>
+            <span class="n">storage</span><span class="o">.</span><span class="n">set_trial_param</span><span class="p">(</span><span class="n">trial_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">param_value_in_internal_repr</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">distributions</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">distribution</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_value</span>
+        <span class="k">return</span> <span class="n">param_value</span>
+
+    <span class="k">def</span> <span class="nf">_is_fixed_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">distribution</span><span class="p">:</span> <span class="n">BaseDistribution</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_params</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">param_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fixed_params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="n">param_value_in_internal_repr</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">to_internal_repr</span><span class="p">(</span><span class="n">param_value</span><span class="p">)</span>
+
+        <span class="n">contained</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">_contains</span><span class="p">(</span><span class="n">param_value_in_internal_repr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">contained</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;Fixed parameter &#39;</span><span class="si">{}</span><span class="s2">&#39; with value </span><span class="si">{}</span><span class="s2"> is out of range &quot;</span>
+                <span class="s2">&quot;for distribution </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">param_value</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">_is_relative_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">distribution</span><span class="p">:</span> <span class="n">BaseDistribution</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_params</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_search_space</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The parameter &#39;</span><span class="si">{}</span><span class="s2">&#39; was sampled by `sample_relative` method &quot;</span>
+                <span class="s2">&quot;but it is not contained in the relative search space.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">relative_distribution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_search_space</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="n">distributions</span><span class="o">.</span><span class="n">check_distribution_compatibility</span><span class="p">(</span><span class="n">relative_distribution</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span>
+
+        <span class="n">param_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="n">param_value_in_internal_repr</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">to_internal_repr</span><span class="p">(</span><span class="n">param_value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">distribution</span><span class="o">.</span><span class="n">_contains</span><span class="p">(</span><span class="n">param_value_in_internal_repr</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_check_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">distribution</span><span class="p">:</span> <span class="n">BaseDistribution</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">old_distribution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">old_distribution</span> <span class="o">!=</span> <span class="n">distribution</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s1">&#39;Inconsistent parameter values for distribution with name &quot;</span><span class="si">{}</span><span class="s1">&quot;! &#39;</span>
+                <span class="s2">&quot;This might be a configuration mistake. &quot;</span>
+                <span class="s2">&quot;Optuna allows to call the same distribution with the same &quot;</span>
+                <span class="s2">&quot;name more than once in a trial. &quot;</span>
+                <span class="s2">&quot;When the parameter values are inconsistent optuna only &quot;</span>
+                <span class="s2">&quot;uses the values of the first call and ignores all following. &quot;</span>
+                <span class="s2">&quot;Using these values: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">old_distribution</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()),</span>
+                <span class="ne">RuntimeWarning</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_latest_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FrozenTrial</span><span class="p">:</span>
+        <span class="c1"># TODO(eukaryo): Remove this method after `system_attrs` property is removed.</span>
+        <span class="n">latest_trial</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="p">)</span>
+        <span class="n">latest_trial</span><span class="o">.</span><span class="n">system_attrs</span> <span class="o">=</span> <span class="n">_LazyTrialSystemAttrs</span><span class="p">(</span>  <span class="c1"># type: ignore[assignment]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">latest_trial</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return parameters to be optimized.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A dictionary containing all parameters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">distributions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return distributions of parameters to be optimized.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A dictionary containing all distributions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">distributions</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">user_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return user attributes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A dictionary containing all user attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">user_attrs</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@deprecated_func</span><span class="p">(</span><span class="s2">&quot;3.1.0&quot;</span><span class="p">,</span> <span class="s2">&quot;5.0.0&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">system_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return system attributes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A dictionary containing all system attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">get_trial_system_attrs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">datetime_start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return start datetime.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Datetime where the :class:`~optuna.trial.Trial` started.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">datetime_start</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">number</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return trial&#39;s number which is consecutive and unique in a study.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A trial number.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_frozen_trial</span><span class="o">.</span><span class="n">number</span></div>
+
+
+
+<span class="k">class</span> <span class="nc">_LazyTrialSystemAttrs</span><span class="p">(</span><span class="n">UserDict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">storage</span><span class="p">:</span> <span class="n">optuna</span><span class="o">.</span><span class="n">storages</span><span class="o">.</span><span class="n">BaseStorage</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span> <span class="o">=</span> <span class="n">trial_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">=</span> <span class="n">storage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialized</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initialized</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_initialized</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">get_trial_system_attrs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_trial_id</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

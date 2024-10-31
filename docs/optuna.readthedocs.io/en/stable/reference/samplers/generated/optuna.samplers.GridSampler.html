@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>optuna.samplers.GridSampler &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="optuna.samplers.RandomSampler" href="optuna.samplers.RandomSampler.html" />
+    <link rel="prev" title="optuna.samplers.BaseSampler" href="optuna.samplers.BaseSampler.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "reference/samplers/generated/optuna.samplers.GridSampler", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/reference/samplers/generated/optuna.samplers.GridSampler.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../optuna.html">optuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../artifacts.html">optuna.artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cli.html">optuna.cli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../distributions.html">optuna.distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exceptions.html">optuna.exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../importance.html">optuna.importance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../integration.html">optuna.integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../logging.html">optuna.logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pruners.html">optuna.pruners</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">optuna.samplers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="optuna.samplers.BaseSampler.html">optuna.samplers.BaseSampler</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">optuna.samplers.GridSampler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#optuna.samplers.GridSampler"><code class="docutils literal notranslate"><span class="pre">GridSampler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.samplers.RandomSampler.html">optuna.samplers.RandomSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.samplers.TPESampler.html">optuna.samplers.TPESampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.samplers.CmaEsSampler.html">optuna.samplers.CmaEsSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.samplers.GPSampler.html">optuna.samplers.GPSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.samplers.PartialFixedSampler.html">optuna.samplers.PartialFixedSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.samplers.NSGAIISampler.html">optuna.samplers.NSGAIISampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.samplers.NSGAIIISampler.html">optuna.samplers.NSGAIIISampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.samplers.QMCSampler.html">optuna.samplers.QMCSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.samplers.BruteForceSampler.html">optuna.samplers.BruteForceSampler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nsgaii.html">optuna.samplers.nsgaii</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../search_space.html">optuna.search_space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../storages.html">optuna.storages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../study.html">optuna.study</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../terminator.html">optuna.terminator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../trial.html">optuna.trial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visualization/index.html">optuna.visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">optuna.samplers</a></li>
+      <li class="breadcrumb-item active">optuna.samplers.GridSampler</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="optuna-samplers-gridsampler">
+<h1>optuna.samplers.GridSampler<a class="headerlink" href="#optuna-samplers-gridsampler" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="optuna.samplers.GridSampler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">optuna.samplers.</span></span><span class="sig-name descname"><span class="pre">GridSampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/optuna/samplers/_grid.html#GridSampler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optuna.samplers.GridSampler" title="Link to this definition"></a></dt>
+<dd><p>Sampler using grid search.</p>
+<p>With <a class="reference internal" href="#optuna.samplers.GridSampler" title="optuna.samplers.GridSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridSampler</span></code></a>, the trials suggest all combinations of parameters
+in the given search space during the study.</p>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
+
+
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+
+
+<span class="n">search_space</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">99</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">99</span><span class="p">]}</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">sampler</span><span class="o">=</span><span class="n">optuna</span><span class="o">.</span><span class="n">samplers</span><span class="o">.</span><span class="n">GridSampler</span><span class="p">(</span><span class="n">search_space</span><span class="p">))</span>
+<span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This sampler with <a class="reference internal" href="../../../tutorial/20_recipes/009_ask_and_tell.html#ask-and-tell"><span class="std std-ref">Ask-and-Tell Interface</span></a> raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.12)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RuntimeError</span></code></a> just after evaluating
+the final grid. This is because <a class="reference internal" href="#optuna.samplers.GridSampler" title="optuna.samplers.GridSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridSampler</span></code></a> automatically
+stops the optimization if all combinations in the passed <code class="docutils literal notranslate"><span class="pre">search_space</span></code> have already
+been evaluated, internally invoking the <a class="reference internal" href="../../generated/optuna.study.Study.html#optuna.study.Study.stop" title="optuna.study.Study.stop"><code class="xref py py-func docutils literal notranslate"><span class="pre">stop()</span></code></a> method.
+As a workaround, we need to handle the error manually as in
+<a class="reference external" href="https://github.com/optuna/optuna/issues/4121#issuecomment-1305289910">https://github.com/optuna/optuna/issues/4121#issuecomment-1305289910</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#optuna.samplers.GridSampler" title="optuna.samplers.GridSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridSampler</span></code></a> does not take care of a parameter’s quantization
+specified by discrete suggest methods but just samples one of values specified in the
+search space. E.g., in the following code snippet, either of <code class="docutils literal notranslate"><span class="pre">-0.5</span></code> or <code class="docutils literal notranslate"><span class="pre">0.5</span></code> is
+sampled as <code class="docutils literal notranslate"><span class="pre">x</span></code> instead of an integer point.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">optuna</span>
+
+
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+    <span class="c1"># The following suggest method specifies integer points between -5 and 5.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+
+<span class="c1"># Non-int points are specified in the grid.</span>
+<span class="n">search_space</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]}</span>
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">sampler</span><span class="o">=</span><span class="n">optuna</span><span class="o">.</span><span class="n">samplers</span><span class="o">.</span><span class="n">GridSampler</span><span class="p">(</span><span class="n">search_space</span><span class="p">))</span>
+<span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A parameter configuration in the grid is not considered finished until its trial is
+finished. Therefore, during distributed optimization where trials run concurrently,
+different workers will occasionally suggest the same parameter configuration.
+The total number of actual trials may therefore exceed the size of the grid.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All parameters must be specified when using <a class="reference internal" href="#optuna.samplers.GridSampler" title="optuna.samplers.GridSampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">GridSampler</span></code></a> with
+<a class="reference internal" href="../../generated/optuna.study.Study.html#optuna.study.Study.enqueue_trial" title="optuna.study.Study.enqueue_trial"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enqueue_trial()</span></code></a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>search_space</strong> (<em>Mapping</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>Sequence</em><em>[</em><em>GridValueType</em><em>]</em><em>]</em>) – A dictionary whose key and value are a parameter name and the corresponding candidates
+of values, respectively.</p></li>
+<li><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><em>None</em>) – A seed to fix the order of trials as the grid is randomly shuffled. This shuffle is
+beneficial when the number of grids is larger than <code class="docutils literal notranslate"><span class="pre">n_trials</span></code> in
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">optimize()</span></code> to suppress suggesting similar grids. Please note
+that fixing <code class="docutils literal notranslate"><span class="pre">seed</span></code> for each process is strongly recommended in distributed
+optimization to avoid duplicated suggestions.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#optuna.samplers.GridSampler.after_trial" title="optuna.samplers.GridSampler.after_trial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">after_trial</span></code></a>(study, trial, state, values)</p></td>
+<td><p>Trial post-processing.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#optuna.samplers.GridSampler.before_trial" title="optuna.samplers.GridSampler.before_trial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">before_trial</span></code></a>(study, trial)</p></td>
+<td><p>Trial pre-processing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#optuna.samplers.GridSampler.infer_relative_search_space" title="optuna.samplers.GridSampler.infer_relative_search_space"><code class="xref py py-obj docutils literal notranslate"><span class="pre">infer_relative_search_space</span></code></a>(study, trial)</p></td>
+<td><p>Infer the search space that will be used by relative sampling in the target trial.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#optuna.samplers.GridSampler.is_exhausted" title="optuna.samplers.GridSampler.is_exhausted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_exhausted</span></code></a>(study)</p></td>
+<td><p>Return True if all the possible params are evaluated, otherwise return False.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#optuna.samplers.GridSampler.reseed_rng" title="optuna.samplers.GridSampler.reseed_rng"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reseed_rng</span></code></a>()</p></td>
+<td><p>Reseed sampler's random number generator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#optuna.samplers.GridSampler.sample_independent" title="optuna.samplers.GridSampler.sample_independent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_independent</span></code></a>(study, trial, param_name, ...)</p></td>
+<td><p>Sample a parameter for a given distribution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#optuna.samplers.GridSampler.sample_relative" title="optuna.samplers.GridSampler.sample_relative"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample_relative</span></code></a>(study, trial, search_space)</p></td>
+<td><p>Sample parameters in a given search space.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="optuna.samplers.GridSampler.after_trial">
+<span class="sig-name descname"><span class="pre">after_trial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/optuna/samplers/_grid.html#GridSampler.after_trial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optuna.samplers.GridSampler.after_trial" title="Link to this definition"></a></dt>
+<dd><p>Trial post-processing.</p>
+<p>This method is called after the objective function returns and right before the trial is
+finished and its state is stored.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Added in v2.4.0 as an experimental feature. The interface may change in newer versions
+without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v2.4.0">https://github.com/optuna/optuna/releases/tag/v2.4.0</a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> (<a class="reference internal" href="../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.Study"><em>Study</em></a>) – Target study object.</p></li>
+<li><p><strong>trial</strong> (<a class="reference internal" href="../../generated/optuna.trial.FrozenTrial.html#optuna.trial.FrozenTrial" title="optuna.trial.FrozenTrial"><em>FrozenTrial</em></a>) – Target trial object.
+Take a copy before modifying this object.</p></li>
+<li><p><strong>state</strong> (<a class="reference internal" href="../../generated/optuna.trial.TrialState.html#optuna.trial.TrialState" title="optuna.trial.TrialState"><em>TrialState</em></a>) – Resulting trial state.</p></li>
+<li><p><strong>values</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>] </em><em>| </em><em>None</em>) – Resulting trial values. Guaranteed to not be <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> if trial succeeded.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optuna.samplers.GridSampler.before_trial">
+<span class="sig-name descname"><span class="pre">before_trial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trial</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/optuna/samplers/_grid.html#GridSampler.before_trial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optuna.samplers.GridSampler.before_trial" title="Link to this definition"></a></dt>
+<dd><p>Trial pre-processing.</p>
+<p>This method is called before the objective function is called and right after the trial is
+instantiated. More precisely, this method is called during trial initialization, just
+before the <a class="reference internal" href="optuna.samplers.BaseSampler.html#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a> call. In other
+words, it is responsible for pre-processing that should be done before inferring the search
+space.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Added in v3.3.0 as an experimental feature. The interface may change in newer versions
+without prior notice. See <a class="reference external" href="https://github.com/optuna/optuna/releases/tag/v3.3.0">https://github.com/optuna/optuna/releases/tag/v3.3.0</a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> (<a class="reference internal" href="../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.Study"><em>Study</em></a>) – Target study object.</p></li>
+<li><p><strong>trial</strong> (<a class="reference internal" href="../../generated/optuna.trial.FrozenTrial.html#optuna.trial.FrozenTrial" title="optuna.trial.FrozenTrial"><em>FrozenTrial</em></a>) – Target trial object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optuna.samplers.GridSampler.infer_relative_search_space">
+<span class="sig-name descname"><span class="pre">infer_relative_search_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trial</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/optuna/samplers/_grid.html#GridSampler.infer_relative_search_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optuna.samplers.GridSampler.infer_relative_search_space" title="Link to this definition"></a></dt>
+<dd><p>Infer the search space that will be used by relative sampling in the target trial.</p>
+<p>This method is called right before <a class="reference internal" href="optuna.samplers.BaseSampler.html#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_relative()</span></code></a>
+method, and the search space returned by this method is passed to it. The parameters not
+contained in the search space will be sampled by using
+<a class="reference internal" href="optuna.samplers.BaseSampler.html#optuna.samplers.BaseSampler.sample_independent" title="optuna.samplers.BaseSampler.sample_independent"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_independent()</span></code></a> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> (<a class="reference internal" href="../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.Study"><em>Study</em></a>) – Target study object.</p></li>
+<li><p><strong>trial</strong> (<a class="reference internal" href="../../generated/optuna.trial.FrozenTrial.html#optuna.trial.FrozenTrial" title="optuna.trial.FrozenTrial"><em>FrozenTrial</em></a>) – Target trial object.
+Take a copy before modifying this object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the parameter names and parameter’s distributions.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, BaseDistribution]</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Please refer to <a class="reference internal" href="../../generated/optuna.search_space.intersection_search_space.html#optuna.search_space.intersection_search_space" title="optuna.search_space.intersection_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">intersection_search_space()</span></code></a> as an
+implementation of <a class="reference internal" href="optuna.samplers.BaseSampler.html#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optuna.samplers.GridSampler.is_exhausted">
+<span class="sig-name descname"><span class="pre">is_exhausted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/optuna/samplers/_grid.html#GridSampler.is_exhausted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optuna.samplers.GridSampler.is_exhausted" title="Link to this definition"></a></dt>
+<dd><p>Return True if all the possible params are evaluated, otherwise return False.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>study</strong> (<a class="reference internal" href="../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.Study"><em>Study</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optuna.samplers.GridSampler.reseed_rng">
+<span class="sig-name descname"><span class="pre">reseed_rng</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/optuna/samplers/_grid.html#GridSampler.reseed_rng"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optuna.samplers.GridSampler.reseed_rng" title="Link to this definition"></a></dt>
+<dd><p>Reseed sampler’s random number generator.</p>
+<p>This method is called by the <a class="reference internal" href="../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> instance if trials are executed
+in parallel with the option <code class="docutils literal notranslate"><span class="pre">n_jobs&gt;1</span></code>. In that case, the sampler instance will be
+replicated including the state of the random number generator, and they may suggest the
+same values. To prevent this issue, this method assigns a different seed to each random
+number generator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optuna.samplers.GridSampler.sample_independent">
+<span class="sig-name descname"><span class="pre">sample_independent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_distribution</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/optuna/samplers/_grid.html#GridSampler.sample_independent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optuna.samplers.GridSampler.sample_independent" title="Link to this definition"></a></dt>
+<dd><p>Sample a parameter for a given distribution.</p>
+<p>This method is called only for the parameters not contained in the search space returned
+by <a class="reference internal" href="optuna.samplers.BaseSampler.html#optuna.samplers.BaseSampler.sample_relative" title="optuna.samplers.BaseSampler.sample_relative"><code class="xref py py-func docutils literal notranslate"><span class="pre">sample_relative()</span></code></a> method. This method is suitable
+for sampling algorithms that do not use relationship between parameters such as random
+sampling and TPE.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The failed trials are ignored by any build-in samplers when they sample new
+parameters. Thus, failed trials are regarded as deleted in the samplers’
+perspective.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> (<a class="reference internal" href="../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.Study"><em>Study</em></a>) – Target study object.</p></li>
+<li><p><strong>trial</strong> (<a class="reference internal" href="../../generated/optuna.trial.FrozenTrial.html#optuna.trial.FrozenTrial" title="optuna.trial.FrozenTrial"><em>FrozenTrial</em></a>) – Target trial object.
+Take a copy before modifying this object.</p></li>
+<li><p><strong>param_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Name of the sampled parameter.</p></li>
+<li><p><strong>param_distribution</strong> (<em>BaseDistribution</em>) – Distribution object that specifies a prior and/or scale of the sampling algorithm.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A parameter value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optuna.samplers.GridSampler.sample_relative">
+<span class="sig-name descname"><span class="pre">sample_relative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_space</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/optuna/samplers/_grid.html#GridSampler.sample_relative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optuna.samplers.GridSampler.sample_relative" title="Link to this definition"></a></dt>
+<dd><p>Sample parameters in a given search space.</p>
+<p>This method is called once at the beginning of each trial, i.e., right before the
+evaluation of the objective function. This method is suitable for sampling algorithms
+that use relationship between parameters such as Gaussian Process and CMA-ES.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The failed trials are ignored by any build-in samplers when they sample new
+parameters. Thus, failed trials are regarded as deleted in the samplers’
+perspective.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>study</strong> (<a class="reference internal" href="../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.Study"><em>Study</em></a>) – Target study object.</p></li>
+<li><p><strong>trial</strong> (<a class="reference internal" href="../../generated/optuna.trial.FrozenTrial.html#optuna.trial.FrozenTrial" title="optuna.trial.FrozenTrial"><em>FrozenTrial</em></a>) – Target trial object.
+Take a copy before modifying this object.</p></li>
+<li><p><strong>search_space</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>BaseDistribution</em><em>]</em>) – The search space returned by
+<a class="reference internal" href="optuna.samplers.BaseSampler.html#optuna.samplers.BaseSampler.infer_relative_search_space" title="optuna.samplers.BaseSampler.infer_relative_search_space"><code class="xref py py-func docutils literal notranslate"><span class="pre">infer_relative_search_space()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the parameter names and the values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="optuna.samplers.BaseSampler.html" class="btn btn-neutral float-left" title="optuna.samplers.BaseSampler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="optuna.samplers.RandomSampler.html" class="btn btn-neutral float-right" title="optuna.samplers.RandomSampler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

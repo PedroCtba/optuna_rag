@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>optuna.pruners._patient &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "_modules/optuna/pruners/_patient", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/_modules/optuna/pruners/_patient.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">optuna.pruners._patient</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for optuna.pruners._patient</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+<span class="kn">from</span> <span class="nn">optuna._experimental</span> <span class="kn">import</span> <span class="n">experimental_class</span>
+<span class="kn">from</span> <span class="nn">optuna.pruners</span> <span class="kn">import</span> <span class="n">BasePruner</span>
+<span class="kn">from</span> <span class="nn">optuna.study._study_direction</span> <span class="kn">import</span> <span class="n">StudyDirection</span>
+
+
+<div class="viewcode-block" id="PatientPruner">
+<a class="viewcode-back" href="../../../reference/generated/optuna.pruners.PatientPruner.html#optuna.pruners.PatientPruner">[docs]</a>
+<span class="nd">@experimental_class</span><span class="p">(</span><span class="s2">&quot;2.8.0&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">PatientPruner</span><span class="p">(</span><span class="n">BasePruner</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pruner which wraps another pruner with tolerance.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">        .. testcode::</span>
+
+<span class="sd">            import numpy as np</span>
+<span class="sd">            from sklearn.datasets import load_iris</span>
+<span class="sd">            from sklearn.linear_model import SGDClassifier</span>
+<span class="sd">            from sklearn.model_selection import train_test_split</span>
+
+<span class="sd">            import optuna</span>
+
+<span class="sd">            X, y = load_iris(return_X_y=True)</span>
+<span class="sd">            X_train, X_valid, y_train, y_valid = train_test_split(X, y)</span>
+<span class="sd">            classes = np.unique(y)</span>
+
+
+<span class="sd">            def objective(trial):</span>
+<span class="sd">                alpha = trial.suggest_float(&quot;alpha&quot;, 0.0, 1.0)</span>
+<span class="sd">                clf = SGDClassifier(alpha=alpha)</span>
+<span class="sd">                n_train_iter = 100</span>
+
+<span class="sd">                for step in range(n_train_iter):</span>
+<span class="sd">                    clf.partial_fit(X_train, y_train, classes=classes)</span>
+
+<span class="sd">                    intermediate_value = clf.score(X_valid, y_valid)</span>
+<span class="sd">                    trial.report(intermediate_value, step)</span>
+
+<span class="sd">                    if trial.should_prune():</span>
+<span class="sd">                        raise optuna.TrialPruned()</span>
+
+<span class="sd">                return clf.score(X_valid, y_valid)</span>
+
+
+<span class="sd">            study = optuna.create_study(</span>
+<span class="sd">                direction=&quot;maximize&quot;,</span>
+<span class="sd">                pruner=optuna.pruners.PatientPruner(optuna.pruners.MedianPruner(), patience=1),</span>
+<span class="sd">            )</span>
+<span class="sd">            study.optimize(objective, n_trials=20)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wrapped_pruner:</span>
+<span class="sd">            Wrapped pruner to perform pruning when :class:`~optuna.pruners.PatientPruner` allows a</span>
+<span class="sd">            trial to be pruned. If it is :obj:`None`, this pruner is equivalent to</span>
+<span class="sd">            early-stopping taken the intermediate values in the individual trial.</span>
+<span class="sd">        patience:</span>
+<span class="sd">            Pruning is disabled until the objective doesn&#39;t improve for</span>
+<span class="sd">            ``patience`` consecutive steps.</span>
+<span class="sd">        min_delta:</span>
+<span class="sd">            Tolerance value to check whether or not the objective improves.</span>
+<span class="sd">            This value should be non-negative.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">wrapped_pruner</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">BasePruner</span><span class="p">],</span> <span class="n">patience</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_delta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">patience</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;patience cannot be negative but got </span><span class="si">{</span><span class="n">patience</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">min_delta</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;min_delta cannot be negative but got </span><span class="si">{</span><span class="n">min_delta</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_wrapped_pruner</span> <span class="o">=</span> <span class="n">wrapped_pruner</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_patience</span> <span class="o">=</span> <span class="n">patience</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_min_delta</span> <span class="o">=</span> <span class="n">min_delta</span>
+
+<div class="viewcode-block" id="PatientPruner.prune">
+<a class="viewcode-back" href="../../../reference/generated/optuna.pruners.PatientPruner.html#optuna.pruners.PatientPruner.prune">[docs]</a>
+    <span class="k">def</span> <span class="nf">prune</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="s2">&quot;optuna.study.Study&quot;</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="s2">&quot;optuna.trial.FrozenTrial&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">last_step</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">intermediate_values</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">intermediate_values</span>
+        <span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">intermediate_values</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+
+        <span class="c1"># Do not prune if number of step to determine are insufficient.</span>
+        <span class="k">if</span> <span class="n">steps</span><span class="o">.</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_patience</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">steps</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="c1"># This is the score patience steps ago</span>
+        <span class="n">steps_before_patience</span> <span class="o">=</span> <span class="n">steps</span><span class="p">[:</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_patience</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">scores_before_patience</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">intermediate_values</span><span class="p">[</span><span class="n">step</span><span class="p">]</span> <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps_before_patience</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># And these are the scores after that</span>
+        <span class="n">steps_after_patience</span> <span class="o">=</span> <span class="n">steps</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_patience</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:]</span>
+        <span class="n">scores_after_patience</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">intermediate_values</span><span class="p">[</span><span class="n">step</span><span class="p">]</span> <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps_after_patience</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">direction</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">direction</span>
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="n">StudyDirection</span><span class="o">.</span><span class="n">MINIMIZE</span><span class="p">:</span>
+            <span class="n">maybe_prune</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">scores_before_patience</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_min_delta</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span>
+                <span class="n">scores_after_patience</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">maybe_prune</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">scores_before_patience</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_min_delta</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span>
+                <span class="n">scores_after_patience</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">maybe_prune</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrapped_pruner</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrapped_pruner</span><span class="o">.</span><span class="n">prune</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

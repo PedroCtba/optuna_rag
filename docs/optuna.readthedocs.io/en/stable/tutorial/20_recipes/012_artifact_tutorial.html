@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Optuna Artifacts Tutorial &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "tutorial/20_recipes/012_artifact_tutorial", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/tutorial/20_recipes/012_artifact_tutorial.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Optuna Artifacts Tutorial</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-tutorial-20-recipes-012-artifact-tutorial-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="optuna-artifacts-tutorial">
+<span id="artifact-tutorial"></span><span id="sphx-glr-tutorial-20-recipes-012-artifact-tutorial-py"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Optuna Artifacts Tutorial</a><a class="headerlink" href="#optuna-artifacts-tutorial" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#optuna-artifacts-tutorial" id="id1">Optuna Artifacts Tutorial</a></p>
+<ul>
+<li><p><a class="reference internal" href="#tl-dr" id="id2">TL;DR</a></p></li>
+<li><p><a class="reference internal" href="#concepts" id="id3">Concepts</a></p></li>
+<li><p><a class="reference internal" href="#situations-where-artifacts-are-useful" id="id4">Situations where artifacts are useful</a></p></li>
+<li><p><a class="reference internal" href="#how-trials-and-artifacts-are-recorded" id="id5">How Trials and Artifacts are Recorded</a></p></li>
+<li><p><a class="reference internal" href="#example-optimization-of-chemical-structures" id="id6">Example: Optimization of Chemical Structures</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id7">Conclusion</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>The artifact module of Optuna is a module designed for saving comparatively large attributes on a trial-by-trial basis in forms such
+as files. Introduced from Optuna v3.3, this module finds a broad range of applications, such as utilizing snapshots of large size
+models for hyperparameter tuning, optimizing massive chemical structures, and even human-in-the-loop optimization employing images
+or sounds. Use of Optuna’s artifact module allows you to handle data that would be too large to store in a database. Furthermore,
+by integrating with <a class="reference external" href="https://github.com/optuna/optuna-dashboard">optuna-dashboard</a>, saved artifacts can be automatically visualized
+with the web UI, which significantly reduces the effort of experiment management.</p>
+<section id="tl-dr">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">TL;DR</a><a class="headerlink" href="#tl-dr" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The artifact module provides a simple way to save and use large data associated with trials.</p></li>
+<li><p>Saved artifacts can be visualized just by accessing the web page using optuna-dashboard, and downloading is also easy.</p></li>
+<li><p>Thanks to the abstraction of the artifact module, the backend (file system, AWS S3) can be easily switched.</p></li>
+<li><p>As the artifact module is tightly linked with Optuna, experiment management can be completed with the Optuna ecosystem alone, simplifying the code base.</p></li>
+</ul>
+</section>
+<section id="concepts">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Concepts</a><a class="headerlink" href="#concepts" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fig 1. Concepts of the “artifact”.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><img alt="https://github.com/optuna/optuna/assets/38826298/112e0b75-9d22-474b-85ea-9f3e0d75fa8d" src="https://github.com/optuna/optuna/assets/38826298/112e0b75-9d22-474b-85ea-9f3e0d75fa8d" />
+</td>
+</tr>
+</tbody>
+</table>
+<p>An “artifact” is associated with an Optuna trial. In Optuna, the objective function is evaluated sequentially to search for the
+maximum (or minimum) value. Each evaluation of the sequentially repeated objective function is called a trial. Normally, trials and
+their associated attributes are saved via storage objects to files or RDBs, etc. For experiment management, you can also save and
+use <a class="reference internal" href="../../reference/generated/optuna.trial.Trial.html#optuna.trial.Trial.user_attrs" title="optuna.trial.Trial.user_attrs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">optuna.trial.Trial.user_attrs</span></code></a> for each trial. However, these attributes are assumed to be integers, short strings, or other small data, which
+are not suitable for storing large data. With Optuna’s artifact module, users can save large data (such as model snapshots,
+chemical structures, image and audio data, etc.) for each trial.</p>
+<p>Also, while this tutorial does not touch upon it, it’s possible to manage artifacts associated not only with trials but also with
+studies. Please refer to the <a class="reference external" href="https://optuna.readthedocs.io/en/stable/reference/generated/optuna.artifacts.upload_artifact.html">official documentation</a>
+if you are interested in.</p>
+</section>
+<section id="situations-where-artifacts-are-useful">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Situations where artifacts are useful</a><a class="headerlink" href="#situations-where-artifacts-are-useful" title="Link to this heading"></a></h2>
+<p>Artifacts are useful when you want to save data that is too large to be stored in RDB for each trial. For example, the artifact
+module would be handy in situations like the following:</p>
+<ul class="simple">
+<li><p>Saving snapshots of machine learning models: Suppose you are tuning hyperparameters for a large-scale machine learning model like
+an LLM. The model is very large, and each round of learning (which corresponds to one trial in Optuna) takes time. To prepare for
+unexpected incidents during training (such as blackouts at the data center or a preemption of computation jobs by the scheduler),
+you may want to save snapshots of the model in the middle of training for each trial. These snapshots often tend to be large and
+are more suitable to be saved as some kinds of files than to be stored in RDB. In such cases, the artifact module is useful.</p></li>
+<li><p>Optimizing chemical structures: Suppose you are formulating and exploring a problem of finding stable chemical structures as a
+black-box optimization problem. Evaluating one chemical structure corresponds to one trial in Optuna, and that chemical structure
+is a complex and large one. It is not appropriate to store such chemical structure data in RDB. It is conceivable to save the
+chemical structure data in a specific file format, and in such a case, the artifact module is useful.</p></li>
+<li><p>Human-in-the-loop optimization of images: Suppose you are optimizing prompts for a generative model that outputs images. You
+sample the prompts using Optuna, output images using the generative model, and let humans rate the images for a Human-in-the-loop
+optimization process. Since the output images are large data, it is not appropriate to use RDB to store them, and in such cases,
+using the artifact module is well suited.</p></li>
+</ul>
+</section>
+<section id="how-trials-and-artifacts-are-recorded">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">How Trials and Artifacts are Recorded</a><a class="headerlink" href="#how-trials-and-artifacts-are-recorded" title="Link to this heading"></a></h2>
+<p>As explained so far, the artifact module is useful when you want to save large data for each trial. In this section, we explain
+how artifacts work in the following two scenarios: first when SQLite + local file system-based artifact backend is used
+(suitable when the entire optimization cycle is completed locally), and second when MySQL + AWS S3-based artifact backend is used
+(suitable when you want to keep the data in a remote location).</p>
+<section id="scenario-1-sqlite-file-system-based-artifact-store">
+<h3>Scenario 1: SQLite + file system-based artifact store<a class="headerlink" href="#scenario-1-sqlite-file-system-based-artifact-store" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fig 2. SQLite + file system-based artifact store.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><img alt="https://github.com/optuna/optuna/assets/38826298/d41d042e-6b78-4615-bf96-05f73a47e9ea" src="https://github.com/optuna/optuna/assets/38826298/d41d042e-6b78-4615-bf96-05f73a47e9ea" />
+</td>
+</tr>
+</tbody>
+</table>
+<p>First, we explain a simple case where the optimization is completed locally.</p>
+<p>Normally, Optuna’s optimization history is persisted into some kind of a database via storage objects. Here, let’s consider a
+method using SQLite, a lightweight RDB management system, as the backend. With SQLite, data is stored in a single file (e.g.,
+<code class="docutils literal notranslate"><span class="pre">./example.db</span></code>). The optimization history comprises what parameters were sampled in each trial, what the evaluation values for those
+parameters were, when each trial started and ended, etc. This file is in the SQLite format, and it is not suitable for storing
+large data. Writing large data entries may cause performance degradation. Note that SQLite is not suitable for distributed parallel
+optimization. If you want to perform that, please use MySQL as we will explain later, or <a class="reference internal" href="../../reference/generated/optuna.storages.JournalStorage.html#optuna.storages.JournalStorage" title="optuna.storages.JournalStorage"><code class="xref py py-class docutils literal notranslate"><span class="pre">JournalStorage</span></code></a>.</p>
+<p>So, let’s use the artifact module to save large data in a different format. Suppose the data is generated for each trial and you
+want to save it in some format (e.g., png format if it’s an image). The specific destination for saving the artifacts can be any
+directory on the local file system (e.g., the <code class="docutils literal notranslate"><span class="pre">./artifacts</span></code> directory). When defining the objective function, you only need to save
+and reference the data using the artifact module.</p>
+<p>The simple pseudocode for the above case  would look something like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+<span class="kn">from</span> <span class="nn">optuna.artifacts</span> <span class="kn">import</span> <span class="n">FileSystemArtifactStore</span>
+<span class="kn">from</span> <span class="nn">optuna.artifacts</span> <span class="kn">import</span> <span class="n">upload_artifact</span>
+<span class="kn">from</span> <span class="nn">optuna.artifacts</span> <span class="kn">import</span> <span class="n">download_artifact</span>
+
+
+<span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;./artifacts&quot;</span>
+<a href="https://docs.python.org/3/library/os.html#os.makedirs" title="os.makedirs" class="sphx-glr-backref-module-os sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span></a><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">artifact_store</span> <span class="o">=</span> <span class="n">FileSystemArtifactStore</span><span class="p">(</span><span class="n">base_path</span><span class="o">=</span><span class="n">base_path</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">:</span> <span class="n">optuna</span><span class="o">.</span><a href="https://docs.python.org/3/library/abc.html#abc.ABC" title="abc.ABC" class="sphx-glr-backref-module-abc sphx-glr-backref-type-py-class"><span class="n">Trial</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="o">...</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Creating and writing an artifact.</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">generate_example</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># This function returns some kind of file.</span>
+    <span class="n">artifact_id</span> <span class="o">=</span> <span class="n">upload_artifact</span><span class="p">(</span>
+        <span class="n">artifact_store</span><span class="o">=</span><span class="n">artifact_store</span><span class="p">,</span>
+        <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span>
+        <span class="n">study_or_trial</span><span class="o">=</span><span class="n">trial</span><span class="p">,</span>
+    <span class="p">)</span>  <span class="c1"># The return value is the artifact ID.</span>
+    <span class="n">trial</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span>
+        <span class="s2">&quot;artifact_id&quot;</span><span class="p">,</span> <span class="n">artifact_id</span>
+    <span class="p">)</span>  <span class="c1"># Save the ID in RDB so that it can be referenced later.</span>
+
+    <span class="k">return</span> <span class="o">...</span>
+
+
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">study_name</span><span class="o">=</span><span class="s2">&quot;test_study&quot;</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s2">&quot;sqlite:///example.db&quot;</span><span class="p">)</span>
+<span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Downloading artifacts associated with the best trial.</span>
+<span class="n">best_artifact_id</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">best_trial</span><span class="o">.</span><span class="n">user_attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;artifact_id&quot;</span><span class="p">)</span>
+<span class="n">download_file_path</span> <span class="o">=</span> <span class="o">...</span>  <span class="c1"># Set the path to save the downloaded artifact.</span>
+<span class="n">download_artifact</span><span class="p">(</span>
+    <span class="n">artifact_store</span><span class="o">=</span><span class="n">artifact_store</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">download_file_path</span><span class="p">,</span> <span class="n">artifact_id</span><span class="o">=</span><span class="n">best_artifact_id</span>
+<span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">download_file_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="scenario-2-remote-mysql-rdb-server-aws-s3-artifact-store">
+<h3>Scenario 2: Remote MySQL RDB server + AWS S3 artifact store<a class="headerlink" href="#scenario-2-remote-mysql-rdb-server-aws-s3-artifact-store" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fig 3. Remote MySQL RDB server + AWS S3 artifact store.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><img alt="https://github.com/optuna/optuna/assets/38826298/067efc85-1fad-4b46-a2be-626c64439d7b" src="https://github.com/optuna/optuna/assets/38826298/067efc85-1fad-4b46-a2be-626c64439d7b" />
+</td>
+</tr>
+</tbody>
+</table>
+<p>Next, we explain the case where data is read and written remotely.</p>
+<p>As the scale of optimization increases, it becomes difficult to complete all calculations locally. Optuna’s storage objects can
+persist data remotely by specifying a URL, enabling distributed optimization. Here, we will use MySQL as a remote relational
+database server. MySQL is an open-source relational database management system and a well-known software used for various purposes.
+For using MySQL with Optuna, the <a class="reference external" href="https://optuna.readthedocs.io/en/stable/tutorial/10_key_features/004_distributed.html">tutorial</a>
+can be a good reference. However, it is also not appropriate to read and write large data in a relational database like MySQL.</p>
+<p>In Optuna, it is common to use the artifact module when you want to read and write such data for each trial. Unlike Scenario 1,
+we distribute the optimization across computation nodes, so local file system-based backends will not work. Instead, we will use
+AWS S3, an online cloud storage service, and Boto3, a framework for interacting with it from Python. As of v3.3, Optuna has a
+built-in artifact store with this Boto3 backend.</p>
+<p>The flow of data is shown in Figure 3. The information calculated in each trial, which corresponds to the optimization history
+(excluding artifact information), is written to the MySQL server. On the other hand, the artifact information is written to AWS S3.
+All workers conducting distributed optimization can read and write in parallel to each, and issues such as race conditions are
+automatically resolved by Optuna’s storage module and artifact module. As a result, although the actual data location changes
+between artifact information and non-artifact information (the former is in AWS S3, the latter is in the MySQL RDB), users can
+read and write data transparently. Translating the above process into simple pseudocode would look something like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">from</span> <span class="nn">botocore.config</span> <span class="kn">import</span> <span class="n">Config</span>
+<span class="kn">import</span> <span class="nn">optuna</span>
+<span class="kn">from</span> <span class="nn">optuna.artifact</span> <span class="kn">import</span> <span class="n">upload_artifact</span>
+<span class="kn">from</span> <span class="nn">optuna.artifact</span> <span class="kn">import</span> <span class="n">download_artifact</span>
+<span class="kn">from</span> <span class="nn">optuna.artifact.boto3</span> <span class="kn">import</span> <span class="n">Boto3ArtifactStore</span>
+
+
+<span class="n">artifact_store</span> <span class="o">=</span> <span class="n">Boto3ArtifactStore</span><span class="p">(</span>
+    <span class="n">client</span><span class="o">=</span><span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
+        <span class="s2">&quot;s3&quot;</span><span class="p">,</span>
+        <span class="n">aws_access_key_id</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span>
+            <span class="s2">&quot;AWS_ACCESS_KEY_ID&quot;</span>
+        <span class="p">],</span>  <span class="c1"># Assume that these environment variables are set up properly. The same applies below.</span>
+        <span class="n">aws_secret_access_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;AWS_SECRET_ACCESS_KEY&quot;</span><span class="p">],</span>
+        <span class="n">endpoint_url</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;S3_ENDPOINT&quot;</span><span class="p">],</span>
+        <span class="n">config</span><span class="o">=</span><span class="n">Config</span><span class="p">(</span><span class="n">connect_timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">read_timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span>
+    <span class="p">),</span>
+    <span class="n">bucket_name</span><span class="o">=</span><span class="s2">&quot;example_bucket&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">:</span> <span class="n">optuna</span><span class="o">.</span><a href="https://docs.python.org/3/library/abc.html#abc.ABC" title="abc.ABC" class="sphx-glr-backref-module-abc sphx-glr-backref-type-py-class"><span class="n">Trial</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="o">...</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Creating and writing an artifact.</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">generate_example</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># This function returns some kind of file.</span>
+    <span class="n">artifact_id</span> <span class="o">=</span> <span class="n">upload_artifact</span><span class="p">(</span>
+        <span class="n">artifact_store</span><span class="o">=</span><span class="n">artifact_store</span><span class="p">,</span>
+        <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span>
+        <span class="n">study_or_trial</span><span class="o">=</span><span class="n">trial</span><span class="p">,</span>
+    <span class="p">)</span>  <span class="c1"># The return value is the artifact ID.</span>
+    <span class="n">trial</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span>
+        <span class="s2">&quot;artifact_id&quot;</span><span class="p">,</span> <span class="n">artifact_id</span>
+    <span class="p">)</span>  <span class="c1"># Save the ID in RDB so that it can be referenced later.</span>
+
+    <span class="k">return</span> <span class="o">...</span>
+
+
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span>
+    <span class="n">study_name</span><span class="o">=</span><span class="s2">&quot;test_study&quot;</span><span class="p">,</span>
+    <span class="n">storage</span><span class="o">=</span><span class="s2">&quot;mysql://USER:PASS@localhost:3306/test&quot;</span><span class="p">,</span>  <span class="c1"># Set the appropriate URL.</span>
+<span class="p">)</span>
+<span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Downloading artifacts associated with the best trial.</span>
+<span class="n">best_artifact_id</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">best_trial</span><span class="o">.</span><span class="n">user_attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;artifact_id&quot;</span><span class="p">)</span>
+<span class="n">download_file_path</span> <span class="o">=</span> <span class="o">...</span>  <span class="c1"># Set the path to save the downloaded artifact.</span>
+<span class="n">download_artifact</span><span class="p">(</span>
+    <span class="n">artifact_store</span><span class="o">=</span><span class="n">artifact_store</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">download_file_path</span><span class="p">,</span> <span class="n">artifact_id</span><span class="o">=</span><span class="n">best_artifact_id</span>
+<span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">download_file_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="example-optimization-of-chemical-structures">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Example: Optimization of Chemical Structures</a><a class="headerlink" href="#example-optimization-of-chemical-structures" title="Link to this heading"></a></h2>
+<p>In this section, we introduce an example of optimizing chemical structure using Optuna by utilizing the artifact module. We will
+target relatively small structures, but the approach remains the same even for complex structures.</p>
+<p>Consider the process of a specific molecule adsorbing onto another substance. In this process, the ease of adsorption reaction
+changes depending on the position of the adsorbing molecule to the substance it is adsorbed onto. The ease of adsorption reaction
+can be evaluated by the adsorption energy (the difference between the energy of the system after adsorption and before). By
+formulating the problem as a minimization problem of an objective function that takes the positional relationship of the adsorbing
+molecule as input and outputs the adsorption energy, this problem is solved as a black-box optimization problem.</p>
+<p>First, let’s import the necessary modules and define some helper functions. You need to install the ASE library for handling
+chemical structures in addition to Optuna, so please install it with <cite>pip install ase</cite>.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span>
+<span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">bulk</span><span class="p">,</span> <span class="n">fcc111</span><span class="p">,</span> <span class="n">molecule</span><span class="p">,</span> <span class="n">add_adsorbate</span>
+<span class="kn">from</span> <span class="nn">ase.calculators.emt</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/abc.html#abc.ABC" title="abc.ABC" class="sphx-glr-backref-module-abc sphx-glr-backref-type-py-class"><span class="n">EMT</span></a>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">write</span><span class="p">,</span> <span class="n">read</span>
+<span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">LBFGS</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">optuna.artifacts</span> <span class="kn">import</span> <span class="n">FileSystemArtifactStore</span>
+<span class="kn">from</span> <span class="nn">optuna.artifacts</span> <span class="kn">import</span> <span class="n">upload_artifact</span>
+<span class="kn">from</span> <span class="nn">optuna.artifacts</span> <span class="kn">import</span> <span class="n">download_artifact</span>
+<span class="kn">from</span> <span class="nn">optuna.logging</span> <span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <span class="n">create_study</span>
+<span class="kn">from</span> <span class="nn">optuna</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/abc.html#abc.ABC" title="abc.ABC" class="sphx-glr-backref-module-abc sphx-glr-backref-type-py-class"><span class="n">Trial</span></a>
+
+
+<span class="c1"># Add stream handler of stdout to show the messages</span>
+<span class="n">get_logger</span><span class="p">(</span><span class="s2">&quot;optuna&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><a href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="logging.StreamHandler" class="sphx-glr-backref-module-logging sphx-glr-backref-type-py-class"><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/io.html#io.TextIOWrapper" title="io.TextIOWrapper" class="sphx-glr-backref-module-io sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span></a><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">get_opt_energy</span><span class="p">(</span><span class="n">atoms</span><span class="p">:</span> <span class="n">Atoms</span><span class="p">,</span> <span class="n">fmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="n">calculator</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/abc.html#abc.ABC" title="abc.ABC" class="sphx-glr-backref-module-abc sphx-glr-backref-type-py-class"><span class="n">EMT</span></a><span class="p">()</span>
+    <span class="n">atoms</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">calculator</span><span class="p">)</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">LBFGS</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">logfile</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">opt</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="n">fmax</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get_total_energy</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">create_slab</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Atoms</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="n">calculator</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/abc.html#abc.ABC" title="abc.ABC" class="sphx-glr-backref-module-abc sphx-glr-backref-type-py-class"><span class="n">EMT</span></a><span class="p">()</span>
+    <span class="n">bulk_atoms</span> <span class="o">=</span> <span class="n">bulk</span><span class="p">(</span><span class="s2">&quot;Pt&quot;</span><span class="p">,</span> <span class="n">cubic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">bulk_atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calculator</span>
+
+    <span class="n">a</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.mean.html#numpy.mean" title="numpy.mean" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">mean</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.diag.html#numpy.diag" title="numpy.diag" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">diag</span></a><span class="p">(</span><span class="n">bulk_atoms</span><span class="o">.</span><span class="n">cell</span><span class="p">))</span>
+    <span class="n">slab</span> <span class="o">=</span> <span class="n">fcc111</span><span class="p">(</span><span class="s2">&quot;Pt&quot;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">vacuum</span><span class="o">=</span><span class="mf">40.0</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">slab</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calculator</span>
+    <span class="n">E_slab</span> <span class="o">=</span> <span class="n">get_opt_energy</span><span class="p">(</span><span class="n">slab</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">slab</span><span class="p">,</span> <span class="n">E_slab</span>
+
+
+<span class="k">def</span> <span class="nf">create_mol</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Atoms</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="n">calculator</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/abc.html#abc.ABC" title="abc.ABC" class="sphx-glr-backref-module-abc sphx-glr-backref-type-py-class"><span class="n">EMT</span></a><span class="p">()</span>
+    <span class="n">mol</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">(</span><span class="s2">&quot;CO&quot;</span><span class="p">)</span>
+    <span class="n">mol</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calculator</span>
+    <span class="n">E_mol</span> <span class="o">=</span> <span class="n">get_opt_energy</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mol</span><span class="p">,</span> <span class="n">E_mol</span>
+
+
+<span class="k">def</span> <span class="nf">atoms_to_json</span><span class="p">(</span><span class="n">atoms</span><span class="p">:</span> <span class="n">Atoms</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/io.html#io.StringIO" title="io.StringIO" class="sphx-glr-backref-module-io sphx-glr-backref-type-py-class"><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span></a><span class="p">()</span>
+    <span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">json_to_atoms</span><span class="p">(</span><span class="n">atoms_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Atoms</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">read</span><span class="p">(</span><a href="https://docs.python.org/3/library/io.html#io.StringIO" title="io.StringIO" class="sphx-glr-backref-module-io sphx-glr-backref-type-py-class"><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span></a><span class="p">(</span><span class="n">atoms_str</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">file_to_atoms</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Atoms</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">read</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Each function is as follows.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_opt_energy</span></code>: Takes a chemical structure, transitions it to a locally stable structure, and returns the energy after the transition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_slab</span></code>: Constructs the substance being adsorbed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_mol</span></code>: Constructs the molecule being adsorbed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">atoms_to_json</span></code>: Converts the chemical structure to a string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">json_to_atoms</span></code>: Converts the string to a chemical structure.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file_to_atoms</span></code>: Reads the string from a file and converts it to a chemical structure.</p></li>
+</ul>
+<p>Using these functions, the code to search for adsorption structures using Optuna is as follows. The objective function is defined
+as class <code class="docutils literal notranslate"><span class="pre">Objective</span></code> in order to carry the artifact store. In its <code class="docutils literal notranslate"><span class="pre">__call__</span></code> method, it retrieves the substance being adsorbed
+(<code class="docutils literal notranslate"><span class="pre">slab</span></code>) and the molecule being adsorbed (<code class="docutils literal notranslate"><span class="pre">mol</span></code>), then after sampling their positional relationship using Optuna (multiple
+<code class="docutils literal notranslate"><span class="pre">trial.suggest_xxx</span></code> methods), it triggers an adsorption reaction with the <code class="docutils literal notranslate"><span class="pre">add_adsorbate</span></code> function, transitions to a locally
+stable structure, then saves the structure in the artifact store and returns the adsorption energy.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">main</span></code> function contains the code to create a <code class="docutils literal notranslate"><span class="pre">Study</span></code> and execute optimization. When creating a <code class="docutils literal notranslate"><span class="pre">Study</span></code>, a storage is
+specified using SQLite, and a back end using the local file system is used for the artifact store. In other words, it corresponds
+to Scenario 1 explained in the previous section. After performing 100 trials of optimization, it displays the information for the
+best trial, and finally saves the chemical structure as <code class="docutils literal notranslate"><span class="pre">best_atoms.png</span></code>. The obtained <code class="docutils literal notranslate"><span class="pre">best_atoms.png`</span></code> is shown in Figure 4.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Objective</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">artifact_store</span><span class="p">:</span> <span class="n">FileSystemArtifactStore</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_artifact_store</span> <span class="o">=</span> <span class="n">artifact_store</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <a href="https://docs.python.org/3/library/abc.html#abc.ABC" title="abc.ABC" class="sphx-glr-backref-module-abc sphx-glr-backref-type-py-class"><span class="n">Trial</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="n">slab</span> <span class="o">=</span> <span class="n">json_to_atoms</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">user_attrs</span><span class="p">[</span><span class="s2">&quot;slab&quot;</span><span class="p">])</span>
+        <span class="n">E_slab</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">user_attrs</span><span class="p">[</span><span class="s2">&quot;E_slab&quot;</span><span class="p">]</span>
+
+        <span class="n">mol</span> <span class="o">=</span> <span class="n">json_to_atoms</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">user_attrs</span><span class="p">[</span><span class="s2">&quot;mol&quot;</span><span class="p">])</span>
+        <span class="n">E_mol</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">study</span><span class="o">.</span><span class="n">user_attrs</span><span class="p">[</span><span class="s2">&quot;E_mol&quot;</span><span class="p">]</span>
+
+        <span class="n">phi</span> <span class="o">=</span> <span class="mf">180.0</span> <span class="o">*</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;phi&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">theta</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">arccos</span></a><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="mf">180.0</span> <span class="o">/</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">pi</span></a>
+        <span class="n">psi</span> <span class="o">=</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;psi&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">x_pos</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;x_pos&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">y_pos</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;y_pos&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">z_hig</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;z_hig&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">xy_position</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">matmul</span></a><span class="p">([</span><span class="n">x_pos</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">slab</span><span class="o">.</span><span class="n">cell</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">mol</span><span class="o">.</span><span class="n">euler_rotate</span><span class="p">(</span><span class="n">phi</span><span class="o">=</span><span class="n">phi</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="n">psi</span><span class="o">=</span><span class="n">psi</span><span class="p">)</span>
+
+        <span class="n">add_adsorbate</span><span class="p">(</span><span class="n">slab</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">z_hig</span><span class="p">,</span> <span class="n">xy_position</span><span class="p">)</span>
+        <span class="n">E_slab_mol</span> <span class="o">=</span> <span class="n">get_opt_energy</span><span class="p">(</span><span class="n">slab</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+
+        <span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;./tmp/</span><span class="si">{</span><span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">,</span> <span class="n">slab</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
+        <span class="n">artifact_id</span> <span class="o">=</span> <span class="n">upload_artifact</span><span class="p">(</span>
+            <span class="n">artifact_store</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_artifact_store</span><span class="p">,</span>
+            <span class="n">file_path</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;./tmp/</span><span class="si">{</span><span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">,</span>
+            <span class="n">study_or_trial</span><span class="o">=</span><span class="n">trial</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">trial</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s2">&quot;structure&quot;</span><span class="p">,</span> <span class="n">artifact_id</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">E_slab_mol</span> <span class="o">-</span> <span class="n">E_slab</span> <span class="o">-</span> <span class="n">E_mol</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">study</span> <span class="o">=</span> <span class="n">create_study</span><span class="p">(</span>
+        <span class="n">study_name</span><span class="o">=</span><span class="s2">&quot;test_study&quot;</span><span class="p">,</span>
+        <span class="n">storage</span><span class="o">=</span><span class="s2">&quot;sqlite:///example.db&quot;</span><span class="p">,</span>
+        <span class="n">load_if_exists</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">slab</span><span class="p">,</span> <span class="n">E_slab</span> <span class="o">=</span> <span class="n">create_slab</span><span class="p">()</span>
+    <span class="n">study</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s2">&quot;slab&quot;</span><span class="p">,</span> <span class="n">atoms_to_json</span><span class="p">(</span><span class="n">slab</span><span class="p">))</span>
+    <span class="n">study</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s2">&quot;E_slab&quot;</span><span class="p">,</span> <span class="n">E_slab</span><span class="p">)</span>
+
+    <span class="n">mol</span><span class="p">,</span> <span class="n">E_mol</span> <span class="o">=</span> <span class="n">create_mol</span><span class="p">()</span>
+    <span class="n">study</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s2">&quot;mol&quot;</span><span class="p">,</span> <span class="n">atoms_to_json</span><span class="p">(</span><span class="n">mol</span><span class="p">))</span>
+    <span class="n">study</span><span class="o">.</span><span class="n">set_user_attr</span><span class="p">(</span><span class="s2">&quot;E_mol&quot;</span><span class="p">,</span> <span class="n">E_mol</span><span class="p">)</span>
+
+    <a href="https://docs.python.org/3/library/os.html#os.makedirs" title="os.makedirs" class="sphx-glr-backref-module-os sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span></a><span class="p">(</span><span class="s2">&quot;./tmp&quot;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">base_path</span> <span class="o">=</span> <span class="s2">&quot;./artifacts&quot;</span>
+    <a href="https://docs.python.org/3/library/os.html#os.makedirs" title="os.makedirs" class="sphx-glr-backref-module-os sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span></a><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">artifact_store</span> <span class="o">=</span> <span class="n">FileSystemArtifactStore</span><span class="p">(</span><span class="n">base_path</span><span class="o">=</span><span class="n">base_path</span><span class="p">)</span>
+    <span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">Objective</span><span class="p">(</span><span class="n">artifact_store</span><span class="p">),</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Best trial is #</span><span class="si">{</span><span class="n">study</span><span class="o">.</span><span class="n">best_trial</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;    Its adsorption energy is </span><span class="si">{</span><span class="n">study</span><span class="o">.</span><span class="n">best_value</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;    Its adsorption position is</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;        phi  : </span><span class="si">{</span><span class="n">study</span><span class="o">.</span><span class="n">best_params</span><span class="p">[</span><span class="s1">&#39;phi&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;        theta: </span><span class="si">{</span><span class="n">study</span><span class="o">.</span><span class="n">best_params</span><span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;        psi. : </span><span class="si">{</span><span class="n">study</span><span class="o">.</span><span class="n">best_params</span><span class="p">[</span><span class="s1">&#39;psi&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;        x_pos: </span><span class="si">{</span><span class="n">study</span><span class="o">.</span><span class="n">best_params</span><span class="p">[</span><span class="s1">&#39;x_pos&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;        y_pos: </span><span class="si">{</span><span class="n">study</span><span class="o">.</span><span class="n">best_params</span><span class="p">[</span><span class="s1">&#39;y_pos&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;        z_hig: </span><span class="si">{</span><span class="n">study</span><span class="o">.</span><span class="n">best_params</span><span class="p">[</span><span class="s1">&#39;z_hig&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">best_artifact_id</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">best_trial</span><span class="o">.</span><span class="n">user_attrs</span><span class="p">[</span><span class="s2">&quot;structure&quot;</span><span class="p">]</span>
+
+    <span class="k">with</span> <a href="https://docs.python.org/3/library/tempfile.html#tempfile.TemporaryDirectory" title="tempfile.TemporaryDirectory" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-class"><span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span></a><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdir_name</span><span class="p">:</span>
+        <span class="n">download_file_path</span> <span class="o">=</span> <a href="https://docs.python.org/3/library/os.path.html#os.path.join" title="os.path.join" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span></a><span class="p">(</span><span class="n">tmpdir_name</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">best_artifact_id</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">)</span>
+        <span class="n">download_artifact</span><span class="p">(</span>
+            <span class="n">artifact_store</span><span class="o">=</span><span class="n">artifact_store</span><span class="p">,</span>
+            <span class="n">file_path</span><span class="o">=</span><span class="n">download_file_path</span><span class="p">,</span>
+            <span class="n">artifact_id</span><span class="o">=</span><span class="n">best_artifact_id</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">best_atoms</span> <span class="o">=</span> <span class="n">file_to_atoms</span><span class="p">(</span><span class="n">download_file_path</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">best_atoms</span><span class="p">)</span>
+        <span class="n">write</span><span class="p">(</span><span class="s2">&quot;best_atoms.png&quot;</span><span class="p">,</span> <span class="n">best_atoms</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;315x,0y,0z&quot;</span><span class="p">))</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>A new study created in RDB with name: test_study
+/home/docs/checkouts/readthedocs.org/user_builds/optuna/checkouts/stable/tutorial/20_recipes/012_artifact_tutorial.py:280: DeprecationWarning:
+
+Please use atoms.calc = calc
+
+Trial 0 finished with value: -0.9812770416132457 and parameters: {&#39;phi&#39;: 0.07508670395675021, &#39;theta&#39;: 0.1537349711249505, &#39;psi&#39;: 0.616279225371233, &#39;x_pos&#39;: 0.09070015983717983, &#39;y_pos&#39;: 0.2035976190176364, &#39;z_hig&#39;: 2.2308803246559132}. Best is trial 0 with value: -0.9812770416132457.
+Trial 1 finished with value: -0.004287071855272551 and parameters: {&#39;phi&#39;: -0.2168137471095848, &#39;theta&#39;: 0.3305510831055034, &#39;psi&#39;: -0.5853528114836524, &#39;x_pos&#39;: 0.03189856036047484, &#39;y_pos&#39;: 0.14172666362665676, &#39;z_hig&#39;: 4.409426983040955}. Best is trial 0 with value: -0.9812770416132457.
+Trial 2 finished with value: -0.984291867814739 and parameters: {&#39;phi&#39;: 0.07377409004274615, &#39;theta&#39;: 0.3761307958317581, &#39;psi&#39;: 0.4172738349742908, &#39;x_pos&#39;: 0.44767598129390307, &#39;y_pos&#39;: 0.2715455652685158, &#39;z_hig&#39;: 1.2875055408124063}. Best is trial 2 with value: -0.984291867814739.
+Best trial is #2
+    Its adsorption energy is -0.984291867814739
+    Its adsorption position is
+        phi  : 0.07377409004274615
+        theta: 0.3761307958317581
+        psi. : 0.4172738349742908
+        x_pos: 0.44767598129390307
+        y_pos: 0.2715455652685158
+        z_hig: 1.2875055408124063
+Atoms(symbols=&#39;COPt64&#39;, pbc=True, cell=[[11.087434329005065, 0.0, 0.0], [5.5437171645025325, 9.601999791710057, 0.0], [0.0, 0.0, 86.78963916567001]], tags=..., calculator=SinglePointCalculator(...))
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fig 4. The chemical structure obtained by the above code.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><img alt="https://github.com/optuna/optuna/assets/38826298/c6bd62fd-599a-424e-8c2c-ca88af85cc63" src="https://github.com/optuna/optuna/assets/38826298/c6bd62fd-599a-424e-8c2c-ca88af85cc63" />
+</td>
+</tr>
+</tbody>
+</table>
+<p>As shown above, it is convenient to use the artifact module when performing the optimization of chemical structures with Optuna.
+In the case of small structures or fewer trial numbers, it’s fine to convert it to a string and save it directly in the RDB.
+However, when dealing with complex structures or performing large-scale searches, it’s better to save it outside the RDB to
+avoid overloading it, such as in an external file system or AWS S3.</p>
+</section>
+<section id="conclusion">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Conclusion</a><a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>The artifact module is a useful feature when you want to save relatively large data for each trial. It can be used for various
+purposes such as saving snapshots of machine learning models, optimizing chemical structures, and human-in-the-loop optimization
+of images and sounds. It’s a powerful assistant for black-box optimization with Optuna. Also, if there are ways to use it that
+we, the Optuna committers, haven’t noticed, please let us know on GitHub discussions. Have a great optimization life with Optuna!</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.656 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-tutorial-20-recipes-012-artifact-tutorial-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/6e6a1710a8301512ef0074d3b66ee7fd/012_artifact_tutorial.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">012_artifact_tutorial.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/c6677d4c023c6db19263bfde776df019/012_artifact_tutorial.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">012_artifact_tutorial.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/ca7ec704633cab25e30e69c2b3405cb9/012_artifact_tutorial.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">012_artifact_tutorial.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

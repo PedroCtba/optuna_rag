@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>plot_timeline &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="matplotlib" href="../matplotlib/index.html" />
+    <link rel="prev" title="plot_terminator_improvement" href="optuna.visualization.plot_terminator_improvement.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "reference/visualization/generated/optuna.visualization.plot_timeline", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/reference/visualization/generated/optuna.visualization.plot_timeline.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../optuna.html">optuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../artifacts.html">optuna.artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cli.html">optuna.cli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../distributions.html">optuna.distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exceptions.html">optuna.exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../importance.html">optuna.importance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../integration.html">optuna.integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../logging.html">optuna.logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pruners.html">optuna.pruners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../samplers/index.html">optuna.samplers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../search_space.html">optuna.search_space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../storages.html">optuna.storages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../study.html">optuna.study</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../terminator.html">optuna.terminator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../trial.html">optuna.trial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">optuna.visualization</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="optuna.visualization.plot_contour.html">plot_contour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.visualization.plot_edf.html">plot_edf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.visualization.plot_hypervolume_history.html">plot_hypervolume_history</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.visualization.plot_intermediate_values.html">plot_intermediate_values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.visualization.plot_optimization_history.html">plot_optimization_history</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.visualization.plot_parallel_coordinate.html">plot_parallel_coordinate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.visualization.plot_param_importances.html">plot_param_importances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.visualization.plot_pareto_front.html">plot_pareto_front</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.visualization.plot_rank.html">plot_rank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.visualization.plot_slice.html">plot_slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optuna.visualization.plot_terminator_improvement.html">plot_terminator_improvement</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">plot_timeline</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#optuna.visualization.plot_timeline"><code class="docutils literal notranslate"><span class="pre">plot_timeline()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../matplotlib/index.html">matplotlib</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">optuna.visualization</a></li>
+      <li class="breadcrumb-item active">plot_timeline</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-reference-visualization-generated-optuna-visualization-plot-timeline-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="plot-timeline">
+<span id="sphx-glr-reference-visualization-generated-optuna-visualization-plot-timeline-py"></span><h1>plot_timeline<a class="headerlink" href="#plot-timeline" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="optuna.visualization.plot_timeline">
+<span class="sig-prename descclassname"><span class="pre">optuna.visualization.</span></span><span class="sig-name descname"><span class="pre">plot_timeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/optuna/visualization/_timeline.html#plot_timeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optuna.visualization.plot_timeline" title="Link to this definition"></a></dt>
+<dd><p>Plot the timeline of a study.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>study</strong> (<a class="reference internal" href="../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.study.Study"><em>Study</em></a>) – A <a class="reference internal" href="../../generated/optuna.study.Study.html#optuna.study.Study" title="optuna.study.Study"><code class="xref py py-class docutils literal notranslate"><span class="pre">Study</span></code></a> object whose trials are plotted with
+their lifetime.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://plotly.com/python-api-reference/generated/plotly.graph_objects.html#plotly.graph_objects.Figure" title="(in )"><code class="xref py py-class docutils literal notranslate"><span class="pre">plotly.graph_objects.Figure</span></code></a> object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Figure</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>The following code snippet shows how to plot the timeline of a study.
+Timeline plot can visualize trials with overlapping execution time
+(e.g., in distributed environments).</p>
+<html>
+<head><meta charset="utf-8" /><script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/reference/visualization/generated/optuna.visualization.plot_timeline.html" /><meta name="readthedocs-http-status" content="200" /></head>
+<body>
+    <div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>                <div id="65c2cebb-4446-4745-bbfb-7f05eaf43a68" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("65c2cebb-4446-4745-bbfb-7f05eaf43a68")) {                    Plotly.newPlot(                        "65c2cebb-4446-4745-bbfb-7f05eaf43a68",                        [{"base":["2024-09-02T05:36:31.534872","2024-09-02T05:36:31.535760","2024-09-02T05:36:31.553198","2024-09-02T05:36:31.565175","2024-09-02T05:36:31.638146","2024-09-02T05:36:31.640590","2024-09-02T05:36:31.678423","2024-09-02T05:36:31.855082","2024-09-02T05:36:32.029885","2024-09-02T05:36:32.035697","2024-09-02T05:36:32.309487","2024-09-02T05:36:32.351973","2024-09-02T05:36:32.445160","2024-09-02T05:36:32.743360","2024-09-02T05:36:32.857328","2024-09-02T05:36:32.864159","2024-09-02T05:36:32.875988"],"hovertemplate":"%{text}\u003cextra\u003eCOMPLETE\u003c\u002fextra\u003e","marker":{"color":"blue"},"name":"COMPLETE","orientation":"h","text":["{\u003cbr\u003e  \"number\": 0,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.02442164945026202\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.15627427635494595\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 1,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.026374330083210284\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.16240175517281297\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 3,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.011685108048264704\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.10809767827416417\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 4,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.03144823038979658\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.17733648916620792\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 7,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.00014129187211145221\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.011886625766442394\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 8,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.09141053998654505\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.30234176024251935\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 10,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.15104902127560652\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.3886502557256415\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 15,\u003cbr\u003e  \"values\": [\u003cbr\u003e    1.6718172623960918e-06\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.0012929877270864143\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 20,\u003cbr\u003e  \"values\": [\u003cbr\u003e    2.0685740823239524e-05\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.004548157959354482\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 21,\u003cbr\u003e  \"values\": [\u003cbr\u003e    9.023711518211092e-05\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.00949932182748384\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 28,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.07384411457825835\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.27174273601746624\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 30,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.00010750407822095159\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.010368417344076751\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 32,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.0641398188144582\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.25325840324549587\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 39,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.007193668031217846\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.08481549405160502\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 42,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.00017935849070542783\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.013392478885756282\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 43,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.006197018245167424\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.07872114230095638\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 44,\u003cbr\u003e  \"values\": [\u003cbr\u003e    0.014310108696922038\u003cbr\u003e  ],\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.11962486654923397\u003cbr\u003e  }\u003cbr\u003e}"],"textposition":"none","x":[15.993,16.505,11.033,17.967,1.452,30.47,39.108999999999995,4.195,4.737,4.79,31.41,4.957,29.936999999999998,12.739,5.772,12.505,16.584000000000003],"y":[0,1,3,4,7,8,10,15,20,21,28,30,32,39,42,43,44],"type":"bar"},{"base":["2024-09-02T05:36:31.594618","2024-09-02T05:36:31.721751","2024-09-02T05:36:31.760525","2024-09-02T05:36:31.812040","2024-09-02T05:36:31.860367","2024-09-02T05:36:31.902641","2024-09-02T05:36:31.990892","2024-09-02T05:36:32.041437","2024-09-02T05:36:32.077497","2024-09-02T05:36:32.142482","2024-09-02T05:36:32.249302","2024-09-02T05:36:32.341982","2024-09-02T05:36:32.357880","2024-09-02T05:36:32.453577","2024-09-02T05:36:32.476187","2024-09-02T05:36:32.551124","2024-09-02T05:36:32.579541","2024-09-02T05:36:32.651016","2024-09-02T05:36:32.685090","2024-09-02T05:36:32.757165","2024-09-02T05:36:32.775164","2024-09-02T05:36:32.881264","2024-09-02T05:36:32.893523","2024-09-02T05:36:32.981706","2024-09-02T05:36:32.996317","2024-09-02T05:36:33.086289"],"hovertemplate":"%{text}\u003cextra\u003eFAIL\u003c\u002fextra\u003e","marker":{"color":"red"},"name":"FAIL","orientation":"h","text":["{\u003cbr\u003e  \"number\": 6,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.8135855762434884\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 12,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.83865962240917\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 13,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.8817284954961171\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 14,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.8420309390891684\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 16,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.8002209548145918\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 17,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.8168770260999686\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 19,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.8022816874619162\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 22,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9503551617896356\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 23,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.93150208721791\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 24,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.8908168274214964\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 27,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9655335694982343\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 29,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9682162522003682\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 31,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.8978962955391205\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 33,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9126736795375177\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 34,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9712248973002571\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 35,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.932390006715472\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 36,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9923748739947383\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 37,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.8569208988943424\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 38,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.8370654141629673\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 40,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9351009032075175\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 41,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9428407107179573\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 45,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9431744807656225\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 46,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.967592470381546\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 47,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9770104713959127\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 48,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9193374060567112\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 49,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.9654535306995662\u003cbr\u003e  }\u003cbr\u003e}"],"textposition":"none","x":[81.57300000000001,88.077,92.441,88.447,83.803,86.1,84.452,98.842,97.363,93.331,100.57900000000001,100.938,93.655,95.286,101.174,97.699,103.384,90.14800000000001,87.949,97.922,98.551,98.275,100.711,102.42099999999999,96.239,101.117],"y":[6,12,13,14,16,17,19,22,23,24,27,29,31,33,34,35,36,37,38,40,41,45,46,47,48,49],"type":"bar"},{"base":["2024-09-02T05:36:31.551896","2024-09-02T05:36:31.584093","2024-09-02T05:36:31.672230","2024-09-02T05:36:31.718581","2024-09-02T05:36:31.946420","2024-09-02T05:36:32.177010","2024-09-02T05:36:32.237990"],"hovertemplate":"%{text}\u003cextra\u003ePRUNED\u003c\u002fextra\u003e","marker":{"color":"orange"},"name":"PRUNED","orientation":"h","text":["{\u003cbr\u003e  \"number\": 2,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.416296147543766\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 5,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.5281266919128097\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 9,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.4841123051178303\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 11,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.40701275662230174\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 18,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.7817888584985156\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 25,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.6682102373715618\u003cbr\u003e  }\u003cbr\u003e}","{\u003cbr\u003e  \"number\": 26,\u003cbr\u003e  \"values\": null,\u003cbr\u003e  \"params\": {\u003cbr\u003e    \"x\": 0.6608641044799161\u003cbr\u003e  }\u003cbr\u003e}"],"textposition":"none","x":[41.857,53.067,48.647000000000006,40.951,82.393,71.354,70.445],"y":[2,5,9,11,18,25,26],"type":"bar"}],                        {"showlegend":true,"template":{"data":{"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"#E5ECF6","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2}}},"title":{"text":"Timeline Plot"},"xaxis":{"title":{"text":"Datetime"},"type":"date"},"yaxis":{"title":{"text":"Trial"}}},                        {"responsive": true}                    )                };                            </script>        </div>
+</body>
+</html>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+<span class="kn">from</span> <span class="nn">plotly.io</span> <span class="kn">import</span> <a href="https://plotly.com/python-api-reference/generated/plotly.io.show.html#plotly.io.show" title="plotly.io.show" class="sphx-glr-backref-module-plotly-io sphx-glr-backref-type-py-function"><span class="n">show</span></a>
+
+
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <a href="https://docs.python.org/3/library/time.html#time.sleep" title="time.sleep" class="sphx-glr-backref-module-time sphx-glr-backref-type-py-function"><span class="n">time</span><span class="o">.</span><span class="n">sleep</span></a><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mf">0.4</span><span class="p">:</span>
+        <span class="k">raise</span> <a href="https://docs.python.org/3/library/exceptions.html#Exception" title="builtins.Exception" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-exception"><span class="n">optuna</span><span class="o">.</span><span class="n">TrialPruned</span></a><span class="p">()</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+
+
+<span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s2">&quot;minimize&quot;</span><span class="p">)</span>
+<span class="n">study</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span>
+    <span class="n">objective</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">catch</span><span class="o">=</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,)</span>
+<span class="p">)</span>
+
+<a href="https://plotly.com/python-api-reference/generated/plotly.graph_objs.Figure.html#id0" title="plotly.graph_objs.Figure" class="sphx-glr-backref-module-plotly-graph_objs sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">plot_timeline</span><span class="p">(</span><span class="n">study</span><span class="p">)</span>
+<a href="https://plotly.com/python-api-reference/generated/plotly.io.show.html#plotly.io.show" title="plotly.io.show" class="sphx-glr-backref-module-plotly-io sphx-glr-backref-type-py-function"><span class="n">show</span></a><span class="p">(</span><a href="https://plotly.com/python-api-reference/generated/plotly.graph_objs.Figure.html#id0" title="plotly.graph_objs.Figure" class="sphx-glr-backref-module-plotly-graph_objs sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.804 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-reference-visualization-generated-optuna-visualization-plot-timeline-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/2dc98bb27b68fff58eed26c857acfc02/optuna.visualization.plot_timeline.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">optuna.visualization.plot_timeline.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/4578b6575456bb23f680e71dae866f75/optuna.visualization.plot_timeline.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">optuna.visualization.plot_timeline.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/3711830e15050bfa9be32d78013b8d69/optuna.visualization.plot_timeline.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">optuna.visualization.plot_timeline.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="optuna.visualization.plot_terminator_improvement.html" class="btn btn-neutral float-left" title="plot_terminator_improvement" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../matplotlib/index.html" class="btn btn-neutral float-right" title="matplotlib" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

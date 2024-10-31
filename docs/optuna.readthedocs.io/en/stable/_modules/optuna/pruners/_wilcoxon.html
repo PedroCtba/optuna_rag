@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>optuna.pruners._wilcoxon &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "_modules/optuna/pruners/_wilcoxon", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/_modules/optuna/pruners/_wilcoxon.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">optuna.pruners._wilcoxon</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for optuna.pruners._wilcoxon</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+<span class="kn">from</span> <span class="nn">optuna._experimental</span> <span class="kn">import</span> <span class="n">experimental_class</span>
+<span class="kn">from</span> <span class="nn">optuna.pruners</span> <span class="kn">import</span> <span class="n">BasePruner</span>
+<span class="kn">from</span> <span class="nn">optuna.study._study_direction</span> <span class="kn">import</span> <span class="n">StudyDirection</span>
+<span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">FrozenTrial</span>
+
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">ss</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">optuna._imports</span> <span class="kn">import</span> <span class="n">_LazyImport</span>
+
+    <span class="n">ss</span> <span class="o">=</span> <span class="n">_LazyImport</span><span class="p">(</span><span class="s2">&quot;scipy.stats&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="WilcoxonPruner">
+<a class="viewcode-back" href="../../../reference/generated/optuna.pruners.WilcoxonPruner.html#optuna.pruners.WilcoxonPruner">[docs]</a>
+<span class="nd">@experimental_class</span><span class="p">(</span><span class="s2">&quot;3.6.0&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">WilcoxonPruner</span><span class="p">(</span><span class="n">BasePruner</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pruner based on the `Wilcoxon signed-rank test &lt;https://en.wikipedia.org/w/index.php?title=Wilcoxon_signed-rank_test&amp;oldid=1195011212&gt;`__.</span>
+
+<span class="sd">    This pruner performs the Wilcoxon signed-rank test between the current trial and the current best trial,</span>
+<span class="sd">    and stops whenever the pruner is sure up to a given p-value that the current trial is worse than the best one.</span>
+
+<span class="sd">    This pruner is effective for optimizing the mean/median of some (costly-to-evaluate) performance scores over a set of problem instances.</span>
+<span class="sd">    Example applications include the optimization of:</span>
+
+<span class="sd">    * the mean performance of a heuristic method (simulated annealing, genetic algorithm, SAT solver, etc.) on a set of problem instances,</span>
+<span class="sd">    * the k-fold cross-validation score of a machine learning model, and</span>
+<span class="sd">    * the accuracy of outputs of a large language model (LLM) on a set of questions.</span>
+
+<span class="sd">    There can be &quot;easy&quot; or &quot;hard&quot; instances (the pruner handles correspondence of the instances between different trials).</span>
+<span class="sd">    In each trial, it is recommended to shuffle the evaluation order, so that the optimization doesn&#39;t overfit to the instances in the beginning.</span>
+
+<span class="sd">    When you use this pruner, you must call ``Trial.report(value, step)`` method for each step (instance id) with</span>
+<span class="sd">    the evaluated value. The instance id may not be in ascending order.</span>
+<span class="sd">    This is different from other pruners in that the reported value need not converge</span>
+<span class="sd">    to the real value. To use pruners such as :class:`~optuna.pruners.SuccessiveHalvingPruner`</span>
+<span class="sd">    in the same setting, you must provide e.g., the historical average of the evaluated values.</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        Please refer to :meth:`~optuna.trial.Trial.report`.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">        .. testcode::</span>
+
+<span class="sd">            import optuna</span>
+<span class="sd">            import numpy as np</span>
+
+
+<span class="sd">            # We minimize the mean evaluation loss over all the problem instances.</span>
+<span class="sd">            def evaluate(param, instance):</span>
+<span class="sd">                # A toy loss function for demonstrative purpose.</span>
+<span class="sd">                return (param - instance) ** 2</span>
+
+
+<span class="sd">            problem_instances = np.linspace(-1, 1, 100)</span>
+
+
+<span class="sd">            def objective(trial):</span>
+<span class="sd">                # Sample a parameter.</span>
+<span class="sd">                param = trial.suggest_float(&quot;param&quot;, -1, 1)</span>
+
+<span class="sd">                # Evaluate performance of the parameter.</span>
+<span class="sd">                results = []</span>
+
+<span class="sd">                # For best results, shuffle the evaluation order in each trial.</span>
+<span class="sd">                instance_ids = np.random.permutation(len(problem_instances))</span>
+<span class="sd">                for instance_id in instance_ids:</span>
+<span class="sd">                    loss = evaluate(param, problem_instances[instance_id])</span>
+<span class="sd">                    results.append(loss)</span>
+
+<span class="sd">                    # Report loss together with the instance id.</span>
+<span class="sd">                    # CAVEAT: You need to pass the same id for the same instance,</span>
+<span class="sd">                    # otherwise WilcoxonPruner cannot correctly pair the losses across trials and</span>
+<span class="sd">                    # the pruning performance will degrade.</span>
+<span class="sd">                    trial.report(loss, instance_id)</span>
+
+<span class="sd">                    if trial.should_prune():</span>
+<span class="sd">                        # Return the current predicted value instead of raising `TrialPruned`.</span>
+<span class="sd">                        # This is a workaround to tell the Optuna about the evaluation</span>
+<span class="sd">                        # results in pruned trials. (See the note below.)</span>
+<span class="sd">                        return sum(results) / len(results)</span>
+
+<span class="sd">                return sum(results) / len(results)</span>
+
+
+<span class="sd">            study = optuna.create_study(pruner=optuna.pruners.WilcoxonPruner(p_threshold=0.1))</span>
+<span class="sd">            study.optimize(objective, n_trials=100)</span>
+
+
+
+<span class="sd">    .. note::</span>
+<span class="sd">        This pruner cannot handle ``infinity`` or ``nan`` values.</span>
+<span class="sd">        Trials containing those values are never pruned.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        If :func:`~optuna.trial.FrozenTrial.should_prune` returns :obj:`True`, you can return an</span>
+<span class="sd">        estimation of the final value (e.g., the average of all evaluated</span>
+<span class="sd">        values) instead of ``raise optuna.TrialPruned()``.</span>
+<span class="sd">        This is a workaround for the problem that currently there is no way</span>
+<span class="sd">        to tell Optuna the predicted objective value for trials raising</span>
+<span class="sd">        :class:`optuna.TrialPruned`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        p_threshold:</span>
+<span class="sd">            The p-value threshold for pruning. This value should be between 0 and 1.</span>
+<span class="sd">            A trial will be pruned whenever the pruner is sure up to the given p-value</span>
+<span class="sd">            that the current trial is worse than the best trial.</span>
+<span class="sd">            The larger this value is, the more aggressive pruning will be performed.</span>
+<span class="sd">            Defaults to 0.1.</span>
+
+<span class="sd">            .. note::</span>
+<span class="sd">                This pruner repeatedly performs statistical tests between the</span>
+<span class="sd">                current trial and the current best trial with increasing samples.</span>
+<span class="sd">                The false-positive rate of such a sequential test is different from</span>
+<span class="sd">                performing the test only once. To get the nominal false-positive rate,</span>
+<span class="sd">                please specify the Pocock-corrected p-value.</span>
+
+<span class="sd">        n_startup_steps:</span>
+<span class="sd">            The number of steps before which no trials are pruned.</span>
+<span class="sd">            Pruning starts only after you have ``n_startup_steps`` steps of</span>
+<span class="sd">            available observations for comparison between the current trial</span>
+<span class="sd">            and the best trial.</span>
+<span class="sd">            Defaults to 0 (pruning kicks in from the very first step).</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># NOQA: E501</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">p_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">n_startup_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n_startup_steps</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_startup_steps must be nonnegative but got </span><span class="si">{</span><span class="n">n_startup_steps</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">p_threshold</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p_threshold must be between 0 and 1 but got </span><span class="si">{</span><span class="n">p_threshold</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_startup_steps</span> <span class="o">=</span> <span class="n">n_startup_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_p_threshold</span> <span class="o">=</span> <span class="n">p_threshold</span>
+
+<div class="viewcode-block" id="WilcoxonPruner.prune">
+<a class="viewcode-back" href="../../../reference/generated/optuna.pruners.WilcoxonPruner.html#optuna.pruners.WilcoxonPruner.prune">[docs]</a>
+    <span class="k">def</span> <span class="nf">prune</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="s2">&quot;optuna.study.Study&quot;</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">intermediate_values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">steps</span><span class="p">,</span> <span class="n">step_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">trial</span><span class="o">.</span><span class="n">intermediate_values</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">step_values</span><span class="p">)):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;The intermediate values of the current trial (trial </span><span class="si">{</span><span class="n">trial</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2">) &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;contain infinity/NaNs. WilcoxonPruner will not prune this trial.&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">best_trial</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">best_trial</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">best_trial</span><span class="o">.</span><span class="n">intermediate_values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;The best trial has no intermediate values so WilcoxonPruner cannot prune trials. &quot;</span>
+                <span class="s2">&quot;If you have added the best trial with Study.add_trial, please consider setting &quot;</span>
+                <span class="s2">&quot;intermediate_values argument.&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">best_steps</span><span class="p">,</span> <span class="n">best_step_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">best_trial</span><span class="o">.</span><span class="n">intermediate_values</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">best_step_values</span><span class="p">)):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;The intermediate values of the best trial (trial </span><span class="si">{</span><span class="n">best_trial</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2">) &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;contain infinity/NaNs. WilcoxonPruner will not prune the current trial.&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">_</span><span class="p">,</span> <span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">best_steps</span><span class="p">,</span> <span class="n">return_indices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">idx1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">step_values</span><span class="p">):</span>
+            <span class="c1"># This if-statement is never satisfied if following &quot;average_is_best&quot; safety works,</span>
+            <span class="c1"># because the safety ensures that the best trial always has the all steps.</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;WilcoxonPruner finds steps existing in the current trial &quot;</span>
+                <span class="s2">&quot;but does not exist in the best trial. &quot;</span>
+                <span class="s2">&quot;Those values are ignored.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">diff_values</span> <span class="o">=</span> <span class="n">step_values</span><span class="p">[</span><span class="n">idx1</span><span class="p">]</span> <span class="o">-</span> <span class="n">best_step_values</span><span class="p">[</span><span class="n">idx2</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">diff_values</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_startup_steps</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">study</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="n">StudyDirection</span><span class="o">.</span><span class="n">MAXIMIZE</span><span class="p">:</span>
+            <span class="n">alt</span> <span class="o">=</span> <span class="s2">&quot;less&quot;</span>
+            <span class="n">average_is_best</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">best_step_values</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">best_step_values</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">sum</span><span class="p">(</span>
+                <span class="n">step_values</span>
+            <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">step_values</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">alt</span> <span class="o">=</span> <span class="s2">&quot;greater&quot;</span>
+            <span class="n">average_is_best</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">best_step_values</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">best_step_values</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">sum</span><span class="p">(</span>
+                <span class="n">step_values</span>
+            <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">step_values</span><span class="p">)</span>
+
+        <span class="c1"># We use zsplit to avoid the problem when all values are zero.</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span><span class="n">diff_values</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="n">alt</span><span class="p">,</span> <span class="n">zero_method</span><span class="o">=</span><span class="s2">&quot;zsplit&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pvalue</span>
+
+        <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_p_threshold</span> <span class="ow">and</span> <span class="n">average_is_best</span><span class="p">:</span>
+            <span class="c1"># ss.wilcoxon found the current trial is probably worse than the best trial,</span>
+            <span class="c1"># but the value of the best trial was not better than</span>
+            <span class="c1"># the average of the current trial&#39;s intermediate values.</span>
+            <span class="c1"># For safety, WilcoxonPruner concludes not to prune it for now.</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_p_threshold</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

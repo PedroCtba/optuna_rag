@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>optuna.artifacts._upload &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "_modules/optuna/artifacts/_upload", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/_modules/optuna/artifacts/_upload.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">optuna.artifacts._upload</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for optuna.artifacts._upload</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">asdict</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">mimetypes</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+
+<span class="kn">from</span> <span class="nn">optuna._convert_positional_args</span> <span class="kn">import</span> <span class="n">convert_positional_args</span>
+<span class="kn">from</span> <span class="nn">optuna.artifacts._protocol</span> <span class="kn">import</span> <span class="n">ArtifactStore</span>
+<span class="kn">from</span> <span class="nn">optuna.storages</span> <span class="kn">import</span> <span class="n">BaseStorage</span>
+<span class="kn">from</span> <span class="nn">optuna.study</span> <span class="kn">import</span> <span class="n">Study</span>
+<span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">FrozenTrial</span>
+<span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">Trial</span>
+
+
+<span class="n">ARTIFACTS_ATTR_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;artifacts:&quot;</span>
+<span class="n">DEFAULT_MIME_TYPE</span> <span class="o">=</span> <span class="s2">&quot;application/octet-stream&quot;</span>
+
+
+<div class="viewcode-block" id="ArtifactMeta">
+<a class="viewcode-back" href="../../../reference/artifacts.html#optuna.artifacts.ArtifactMeta">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ArtifactMeta</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Meta information for an artifact.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        All the artifact meta linked to a study or trial can be listed by</span>
+<span class="sd">        :func:`~optuna.artifacts.get_all_artifact_meta`.</span>
+<span class="sd">        The artifact meta can be used for :func:`~optuna.artifacts.download_artifact`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        artifact_id:</span>
+<span class="sd">            The identifier of the artifact.</span>
+<span class="sd">        filename:</span>
+<span class="sd">            The artifact file name used for the upload.</span>
+<span class="sd">        mimetype:</span>
+<span class="sd">            A MIME type of the artifact.</span>
+<span class="sd">            If not specified, the MIME type is guessed from the file extension.</span>
+<span class="sd">        encoding:</span>
+<span class="sd">            An encoding of the artifact, which is suitable for use as a Content-Encoding header,</span>
+<span class="sd">            e.g., gzip. If not specified, the encoding is guessed from the file extension.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">artifact_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">mimetype</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="upload_artifact">
+<a class="viewcode-back" href="../../../reference/artifacts.html#optuna.artifacts.upload_artifact">[docs]</a>
+<span class="nd">@convert_positional_args</span><span class="p">(</span>
+    <span class="n">previous_positional_arg_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;study_or_trial&quot;</span><span class="p">,</span> <span class="s2">&quot;file_path&quot;</span><span class="p">,</span> <span class="s2">&quot;artifact_store&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">upload_artifact</span><span class="p">(</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">artifact_store</span><span class="p">:</span> <span class="n">ArtifactStore</span><span class="p">,</span>
+    <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">study_or_trial</span><span class="p">:</span> <span class="n">Trial</span> <span class="o">|</span> <span class="n">FrozenTrial</span> <span class="o">|</span> <span class="n">Study</span><span class="p">,</span>
+    <span class="n">storage</span><span class="p">:</span> <span class="n">BaseStorage</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">mimetype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Upload an artifact to the artifact store.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        artifact_store:</span>
+<span class="sd">            An artifact store.</span>
+<span class="sd">        file_path:</span>
+<span class="sd">            A path to the file to be uploaded.</span>
+<span class="sd">        study_or_trial:</span>
+<span class="sd">            A :class:`~optuna.trial.Trial` object, a :class:`~optuna.trial.FrozenTrial`, or</span>
+<span class="sd">            a :class:`~optuna.study.Study` object.</span>
+<span class="sd">        storage:</span>
+<span class="sd">            A storage object. This argument is required only if ``study_or_trial`` is</span>
+<span class="sd">            :class:`~optuna.trial.FrozenTrial`.</span>
+<span class="sd">        mimetype:</span>
+<span class="sd">            A MIME type of the artifact. If not specified, the MIME type is guessed from the file</span>
+<span class="sd">            extension.</span>
+<span class="sd">        encoding:</span>
+<span class="sd">            An encoding of the artifact, which is suitable for use as a ``Content-Encoding``</span>
+<span class="sd">            header (e.g. gzip). If not specified, the encoding is guessed from the file extension.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        An artifact ID.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">study_or_trial</span><span class="p">,</span> <span class="n">Trial</span><span class="p">)</span> <span class="ow">and</span> <span class="n">storage</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">storage</span> <span class="o">=</span> <span class="n">study_or_trial</span><span class="o">.</span><span class="n">storage</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">study_or_trial</span><span class="p">,</span> <span class="n">Study</span><span class="p">)</span> <span class="ow">and</span> <span class="n">storage</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">storage</span> <span class="o">=</span> <span class="n">study_or_trial</span><span class="o">.</span><span class="n">_storage</span>
+
+    <span class="k">if</span> <span class="n">storage</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;storage is required for FrozenTrial.&quot;</span><span class="p">)</span>
+
+    <span class="n">artifact_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+    <span class="n">guess_mimetype</span><span class="p">,</span> <span class="n">guess_encoding</span> <span class="o">=</span> <span class="n">mimetypes</span><span class="o">.</span><span class="n">guess_type</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">artifact</span> <span class="o">=</span> <span class="n">ArtifactMeta</span><span class="p">(</span>
+        <span class="n">artifact_id</span><span class="o">=</span><span class="n">artifact_id</span><span class="p">,</span>
+        <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+        <span class="n">mimetype</span><span class="o">=</span><span class="n">mimetype</span> <span class="ow">or</span> <span class="n">guess_mimetype</span> <span class="ow">or</span> <span class="n">DEFAULT_MIME_TYPE</span><span class="p">,</span>
+        <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span> <span class="ow">or</span> <span class="n">guess_encoding</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">attr_key</span> <span class="o">=</span> <span class="n">ARTIFACTS_ATTR_PREFIX</span> <span class="o">+</span> <span class="n">artifact_id</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">study_or_trial</span><span class="p">,</span> <span class="p">(</span><span class="n">Trial</span><span class="p">,</span> <span class="n">FrozenTrial</span><span class="p">)):</span>
+        <span class="n">trial_id</span> <span class="o">=</span> <span class="n">study_or_trial</span><span class="o">.</span><span class="n">_trial_id</span>
+        <span class="n">storage</span><span class="o">.</span><span class="n">set_trial_system_attr</span><span class="p">(</span><span class="n">trial_id</span><span class="p">,</span> <span class="n">attr_key</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">asdict</span><span class="p">(</span><span class="n">artifact</span><span class="p">)))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">study_id</span> <span class="o">=</span> <span class="n">study_or_trial</span><span class="o">.</span><span class="n">_study_id</span>
+        <span class="n">storage</span><span class="o">.</span><span class="n">set_study_system_attr</span><span class="p">(</span><span class="n">study_id</span><span class="p">,</span> <span class="n">attr_key</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">asdict</span><span class="p">(</span><span class="n">artifact</span><span class="p">)))</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">artifact_store</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">artifact_id</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">artifact_id</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

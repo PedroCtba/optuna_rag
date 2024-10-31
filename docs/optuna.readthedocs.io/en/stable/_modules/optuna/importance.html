@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>optuna.importance &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "_modules/optuna/importance", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/_modules/optuna/importance.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">optuna.importance</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for optuna.importance</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+
+<span class="kn">from</span> <span class="nn">optuna._experimental</span> <span class="kn">import</span> <span class="n">warn_experimental_argument</span>
+<span class="kn">from</span> <span class="nn">optuna.importance._base</span> <span class="kn">import</span> <span class="n">BaseImportanceEvaluator</span>
+<span class="kn">from</span> <span class="nn">optuna.importance._fanova</span> <span class="kn">import</span> <span class="n">FanovaImportanceEvaluator</span>
+<span class="kn">from</span> <span class="nn">optuna.importance._mean_decrease_impurity</span> <span class="kn">import</span> <span class="n">MeanDecreaseImpurityImportanceEvaluator</span>
+<span class="kn">from</span> <span class="nn">optuna.importance._ped_anova</span> <span class="kn">import</span> <span class="n">PedAnovaImportanceEvaluator</span>
+<span class="kn">from</span> <span class="nn">optuna.study</span> <span class="kn">import</span> <span class="n">Study</span>
+<span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">FrozenTrial</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;BaseImportanceEvaluator&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FanovaImportanceEvaluator&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MeanDecreaseImpurityImportanceEvaluator&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PedAnovaImportanceEvaluator&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;get_param_importances&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="get_param_importances">
+<a class="viewcode-back" href="../../reference/generated/optuna.importance.get_param_importances.html#optuna.importance.get_param_importances">[docs]</a>
+<span class="k">def</span> <span class="nf">get_param_importances</span><span class="p">(</span>
+    <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">evaluator</span><span class="p">:</span> <span class="n">BaseImportanceEvaluator</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">params</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">target</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">FrozenTrial</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluate parameter importances based on completed trials in the given study.</span>
+
+<span class="sd">    The parameter importances are returned as a dictionary where the keys consist of parameter</span>
+<span class="sd">    names and their values importances.</span>
+<span class="sd">    The importances are represented by non-negative floating point numbers, where higher values</span>
+<span class="sd">    mean that the parameters are more important.</span>
+<span class="sd">    The returned dictionary is ordered by its values in a descending order.</span>
+<span class="sd">    By default, the sum of the importance values are normalized to 1.0.</span>
+
+<span class="sd">    If ``params`` is :obj:`None`, all parameter that are present in all of the completed trials are</span>
+<span class="sd">    assessed.</span>
+<span class="sd">    This implies that conditional parameters will be excluded from the evaluation.</span>
+<span class="sd">    To assess the importances of conditional parameters, a :obj:`list` of parameter names can be</span>
+<span class="sd">    specified via ``params``.</span>
+<span class="sd">    If specified, only completed trials that contain all of the parameters will be considered.</span>
+<span class="sd">    If no such trials are found, an error will be raised.</span>
+
+<span class="sd">    If the given study does not contain completed trials, an error will be raised.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        If ``params`` is specified as an empty list, an empty dictionary is returned.</span>
+
+<span class="sd">    .. seealso::</span>
+
+<span class="sd">        See :func:`~optuna.visualization.plot_param_importances` to plot importances.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        study:</span>
+<span class="sd">            An optimized study.</span>
+<span class="sd">        evaluator:</span>
+<span class="sd">            An importance evaluator object that specifies which algorithm to base the importance</span>
+<span class="sd">            assessment on.</span>
+<span class="sd">            Defaults to</span>
+<span class="sd">            :class:`~optuna.importance.FanovaImportanceEvaluator`.</span>
+
+<span class="sd">            .. note::</span>
+<span class="sd">                :class:`~optuna.importance.FanovaImportanceEvaluator` takes over 1 minute</span>
+<span class="sd">                when given a study that contains 1000+ trials. We published</span>
+<span class="sd">                `optuna-fast-fanova &lt;https://github.com/optuna/optuna-fast-fanova&gt;`__ library,</span>
+<span class="sd">                that is a Cython accelerated fANOVA implementation.</span>
+<span class="sd">                By using it, you can get hyperparameter importances within a few seconds.</span>
+<span class="sd">                If ``n_trials`` is more than 10000, the Cython implementation takes more than</span>
+<span class="sd">                a minute, so you can use :class:`~optuna.importance.PedAnovaImportanceEvaluator`</span>
+<span class="sd">                instead, enabling the evaluation to finish in a second.</span>
+
+<span class="sd">        params:</span>
+<span class="sd">            A list of names of parameters to assess.</span>
+<span class="sd">            If :obj:`None`, all parameters that are present in all of the completed trials are</span>
+<span class="sd">            assessed.</span>
+<span class="sd">        target:</span>
+<span class="sd">            A function to specify the value to evaluate importances.</span>
+<span class="sd">            If it is :obj:`None` and ``study`` is being used for single-objective optimization,</span>
+<span class="sd">            the objective values are used. ``target`` must be specified if ``study`` is being</span>
+<span class="sd">            used for multi-objective optimization.</span>
+
+<span class="sd">            .. note::</span>
+<span class="sd">                Specify this argument if ``study`` is being used for multi-objective</span>
+<span class="sd">                optimization. For example, to get the hyperparameter importance of the first</span>
+<span class="sd">                objective, use ``target=lambda t: t.values[0]`` for the target parameter.</span>
+<span class="sd">        normalize:</span>
+<span class="sd">            A boolean option to specify whether the sum of the importance values should be</span>
+<span class="sd">            normalized to 1.0.</span>
+<span class="sd">            Defaults to :obj:`True`.</span>
+
+<span class="sd">            .. note::</span>
+<span class="sd">                Added in v3.0.0 as an experimental feature. The interface may change in newer</span>
+<span class="sd">                versions without prior notice. See</span>
+<span class="sd">                https://github.com/optuna/optuna/releases/tag/v3.0.0.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A :obj:`dict` where the keys are parameter names and the values are assessed importances.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">evaluator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">evaluator</span> <span class="o">=</span> <span class="n">FanovaImportanceEvaluator</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">evaluator</span><span class="p">,</span> <span class="n">BaseImportanceEvaluator</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Evaluator must be a subclass of BaseImportanceEvaluator.&quot;</span><span class="p">)</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="n">n_params</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">((</span><span class="n">param</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">n_params</span><span class="p">)</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">((</span><span class="n">param</span><span class="p">,</span> <span class="n">value</span> <span class="o">/</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">warn_experimental_argument</span><span class="p">(</span><span class="s2">&quot;normalize&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>optuna.samplers._gp.sampler &mdash; Optuna 4.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=d0d4e556" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=17614d54"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../_static/copybutton.js?v=a56c686a"></script>
+        
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+<!-- RTD Extra Head -->
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "_modules/optuna/samplers/_gp/sampler", "programming_language": "words", "project": "optuna", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "stable"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async type="text/javascript" src="/_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="optuna" /><meta name="readthedocs-version-slug" content="stable" /><meta name="readthedocs-resolver-filename" content="/_modules/optuna/samplers/_gp/sampler.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://optuna.org/#key_features" class="header_link">Key Features</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#code_examples" class="header_link">Code Examples</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#dashboard" class="header_link">Dashboard</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#hub" class="header_link">OptunaHub</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#blog" class="header_link">Blog</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#video" class="header_link">Videos</a>
+                </li>
+                <li>
+                    <a href="https://optuna.org/#paper" class="header_link">Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html">
+            
+              <img src="../../../../_static/optuna-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                stable
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Optuna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">optuna.samplers._gp.sampler</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for optuna.samplers._gp.sampler</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">optuna</span>
+<span class="kn">from</span> <span class="nn">optuna._experimental</span> <span class="kn">import</span> <span class="n">experimental_class</span>
+<span class="kn">from</span> <span class="nn">optuna.distributions</span> <span class="kn">import</span> <span class="n">BaseDistribution</span>
+<span class="kn">from</span> <span class="nn">optuna.samplers._base</span> <span class="kn">import</span> <span class="n">BaseSampler</span>
+<span class="kn">from</span> <span class="nn">optuna.samplers._lazy_random_state</span> <span class="kn">import</span> <span class="n">LazyRandomState</span>
+<span class="kn">from</span> <span class="nn">optuna.study</span> <span class="kn">import</span> <span class="n">StudyDirection</span>
+<span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">FrozenTrial</span>
+<span class="kn">from</span> <span class="nn">optuna.trial</span> <span class="kn">import</span> <span class="n">TrialState</span>
+
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">torch</span>
+
+    <span class="kn">import</span> <span class="nn">optuna._gp.acqf</span> <span class="k">as</span> <span class="nn">acqf</span>
+    <span class="kn">import</span> <span class="nn">optuna._gp.gp</span> <span class="k">as</span> <span class="nn">gp</span>
+    <span class="kn">import</span> <span class="nn">optuna._gp.optim_mixed</span> <span class="k">as</span> <span class="nn">optim_mixed</span>
+    <span class="kn">import</span> <span class="nn">optuna._gp.prior</span> <span class="k">as</span> <span class="nn">prior</span>
+    <span class="kn">import</span> <span class="nn">optuna._gp.search_space</span> <span class="k">as</span> <span class="nn">gp_search_space</span>
+    <span class="kn">from</span> <span class="nn">optuna.study</span> <span class="kn">import</span> <span class="n">Study</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">optuna._imports</span> <span class="kn">import</span> <span class="n">_LazyImport</span>
+
+    <span class="n">torch</span> <span class="o">=</span> <span class="n">_LazyImport</span><span class="p">(</span><span class="s2">&quot;torch&quot;</span><span class="p">)</span>
+    <span class="n">gp_search_space</span> <span class="o">=</span> <span class="n">_LazyImport</span><span class="p">(</span><span class="s2">&quot;optuna._gp.search_space&quot;</span><span class="p">)</span>
+    <span class="n">gp</span> <span class="o">=</span> <span class="n">_LazyImport</span><span class="p">(</span><span class="s2">&quot;optuna._gp.gp&quot;</span><span class="p">)</span>
+    <span class="n">optim_mixed</span> <span class="o">=</span> <span class="n">_LazyImport</span><span class="p">(</span><span class="s2">&quot;optuna._gp.optim_mixed&quot;</span><span class="p">)</span>
+    <span class="n">acqf</span> <span class="o">=</span> <span class="n">_LazyImport</span><span class="p">(</span><span class="s2">&quot;optuna._gp.acqf&quot;</span><span class="p">)</span>
+    <span class="n">prior</span> <span class="o">=</span> <span class="n">_LazyImport</span><span class="p">(</span><span class="s2">&quot;optuna._gp.prior&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="GPSampler">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.GPSampler.html#optuna.samplers.GPSampler">[docs]</a>
+<span class="nd">@experimental_class</span><span class="p">(</span><span class="s2">&quot;3.6.0&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">GPSampler</span><span class="p">(</span><span class="n">BaseSampler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sampler using Gaussian process-based Bayesian optimization.</span>
+
+<span class="sd">    This sampler fits a Gaussian process (GP) to the objective function and optimizes</span>
+<span class="sd">    the acquisition function to suggest the next parameters.</span>
+
+<span class="sd">    The current implementation uses:</span>
+<span class="sd">        - Matern kernel with nu=2.5 (twice differentiable),</span>
+<span class="sd">        - Automatic relevance determination (ARD) for the length scale of each parameter,</span>
+<span class="sd">        - Gamma prior for inverse squared lengthscales, kernel scale, and noise variance,</span>
+<span class="sd">        - Log Expected Improvement (logEI) as the acquisition function, and</span>
+<span class="sd">        - Quasi-Monte Carlo (QMC) sampling to optimize the acquisition function.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        This sampler requires ``scipy`` and ``torch``.</span>
+<span class="sd">        You can install these dependencies with ``pip install scipy torch``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        seed:</span>
+<span class="sd">            Random seed to initialize internal random number generator.</span>
+<span class="sd">            Defaults to :obj:`None` (a seed is picked randomly).</span>
+
+<span class="sd">        independent_sampler:</span>
+<span class="sd">            Sampler used for initial sampling (for the first ``n_startup_trials`` trials)</span>
+<span class="sd">            and for conditional parameters. Defaults to :obj:`None`</span>
+<span class="sd">            (a random sampler with the same ``seed`` is used).</span>
+
+<span class="sd">        n_startup_trials:</span>
+<span class="sd">            Number of initial trials. Defaults to 10.</span>
+
+<span class="sd">        deterministic_objective:</span>
+<span class="sd">            Whether the objective function is deterministic or not.</span>
+<span class="sd">            If :obj:`True`, the sampler will fix the noise variance of the surrogate model to</span>
+<span class="sd">            the minimum value (slightly above 0 to ensure numerical stability).</span>
+<span class="sd">            Defaults to :obj:`False`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">independent_sampler</span><span class="p">:</span> <span class="n">BaseSampler</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">n_startup_trials</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">deterministic_objective</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rng</span> <span class="o">=</span> <span class="n">LazyRandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span> <span class="o">=</span> <span class="n">independent_sampler</span> <span class="ow">or</span> <span class="n">optuna</span><span class="o">.</span><span class="n">samplers</span><span class="o">.</span><span class="n">RandomSampler</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_intersection_search_space</span> <span class="o">=</span> <span class="n">optuna</span><span class="o">.</span><span class="n">search_space</span><span class="o">.</span><span class="n">IntersectionSearchSpace</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_startup_trials</span> <span class="o">=</span> <span class="n">n_startup_trials</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_prior</span><span class="p">:</span> <span class="s2">&quot;Callable[[gp.KernelParamsTensor], torch.Tensor]&quot;</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">prior</span><span class="o">.</span><span class="n">default_log_prior</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_minimum_noise</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">prior</span><span class="o">.</span><span class="n">DEFAULT_MINIMUM_NOISE_VAR</span>
+        <span class="c1"># We cache the kernel parameters for initial values of fitting the next time.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_params_cache</span><span class="p">:</span> <span class="s2">&quot;gp.KernelParamsTensor | None&quot;</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_optimize_n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2048</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic</span> <span class="o">=</span> <span class="n">deterministic_objective</span>
+
+<div class="viewcode-block" id="GPSampler.reseed_rng">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.GPSampler.html#optuna.samplers.GPSampler.reseed_rng">[docs]</a>
+    <span class="k">def</span> <span class="nf">reseed_rng</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rng</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">seed</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span><span class="o">.</span><span class="n">reseed_rng</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="GPSampler.infer_relative_search_space">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.GPSampler.html#optuna.samplers.GPSampler.infer_relative_search_space">[docs]</a>
+    <span class="k">def</span> <span class="nf">infer_relative_search_space</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">]:</span>
+        <span class="n">search_space</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">distribution</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intersection_search_space</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">study</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">distribution</span><span class="o">.</span><span class="n">single</span><span class="p">():</span>
+                <span class="k">continue</span>
+            <span class="n">search_space</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">distribution</span>
+
+        <span class="k">return</span> <span class="n">search_space</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_optimize_acqf</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">acqf_params</span><span class="p">:</span> <span class="s2">&quot;acqf.AcquisitionFunctionParams&quot;</span><span class="p">,</span>
+        <span class="n">best_params</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="c1"># Advanced users can override this method to change the optimization algorithm.</span>
+        <span class="c1"># However, we do not make any effort to keep backward compatibility between versions.</span>
+        <span class="c1"># Particularly, we may remove this function in future refactoring.</span>
+        <span class="n">normalized_params</span><span class="p">,</span> <span class="n">_acqf_val</span> <span class="o">=</span> <span class="n">optim_mixed</span><span class="o">.</span><span class="n">optimize_acqf_mixed</span><span class="p">(</span>
+            <span class="n">acqf_params</span><span class="p">,</span>
+            <span class="n">warmstart_normalized_params_array</span><span class="o">=</span><span class="n">best_params</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span>
+            <span class="n">n_preliminary_samples</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
+            <span class="n">n_local_search</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">tol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
+            <span class="n">rng</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_rng</span><span class="o">.</span><span class="n">rng</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">normalized_params</span>
+
+<div class="viewcode-block" id="GPSampler.sample_relative">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.GPSampler.html#optuna.samplers.GPSampler.sample_relative">[docs]</a>
+    <span class="k">def</span> <span class="nf">sample_relative</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span><span class="p">,</span> <span class="n">search_space</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BaseDistribution</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error_if_multi_objective</span><span class="p">(</span><span class="n">study</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">search_space</span> <span class="o">==</span> <span class="p">{}:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+        <span class="n">states</span> <span class="o">=</span> <span class="p">(</span><span class="n">TrialState</span><span class="o">.</span><span class="n">COMPLETE</span><span class="p">,)</span>
+        <span class="n">trials</span> <span class="o">=</span> <span class="n">study</span><span class="o">.</span><span class="n">_get_trials</span><span class="p">(</span><span class="n">deepcopy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="n">states</span><span class="p">,</span> <span class="n">use_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">trials</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_startup_trials</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+
+        <span class="p">(</span>
+            <span class="n">internal_search_space</span><span class="p">,</span>
+            <span class="n">normalized_params</span><span class="p">,</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="n">gp_search_space</span><span class="o">.</span><span class="n">get_search_space_and_normalized_params</span><span class="p">(</span><span class="n">trials</span><span class="p">,</span> <span class="n">search_space</span><span class="p">)</span>
+
+        <span class="n">_sign</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="k">if</span> <span class="n">study</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="n">StudyDirection</span><span class="o">.</span><span class="n">MINIMIZE</span> <span class="k">else</span> <span class="mf">1.0</span>
+        <span class="n">score_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">_sign</span> <span class="o">*</span> <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">trial</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">trials</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">score_vals</span><span class="p">)):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;GPSampler cannot handle infinite values. &quot;</span>
+                <span class="s2">&quot;We clamp those values to worst/best finite value.&quot;</span>
+            <span class="p">)</span>
+
+            <span class="n">finite_score_vals</span> <span class="o">=</span> <span class="n">score_vals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">score_vals</span><span class="p">)]</span>
+            <span class="n">best_finite_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">finite_score_vals</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+            <span class="n">worst_finite_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">finite_score_vals</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+            <span class="n">score_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">score_vals</span><span class="p">,</span> <span class="n">worst_finite_score</span><span class="p">,</span> <span class="n">best_finite_score</span><span class="p">)</span>
+
+        <span class="n">standarized_score_vals</span> <span class="o">=</span> <span class="p">(</span><span class="n">score_vals</span> <span class="o">-</span> <span class="n">score_vals</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">score_vals</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_params_cache</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_params_cache</span><span class="o">.</span><span class="n">inverse_squared_lengthscales</span>
+        <span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">internal_search_space</span><span class="o">.</span><span class="n">scale_types</span><span class="p">):</span>
+            <span class="c1"># Clear cache if the search space changes.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_params_cache</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">kernel_params</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">fit_kernel_params</span><span class="p">(</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">normalized_params</span><span class="p">,</span>
+            <span class="n">Y</span><span class="o">=</span><span class="n">standarized_score_vals</span><span class="p">,</span>
+            <span class="n">is_categorical</span><span class="o">=</span><span class="p">(</span>
+                <span class="n">internal_search_space</span><span class="o">.</span><span class="n">scale_types</span> <span class="o">==</span> <span class="n">gp_search_space</span><span class="o">.</span><span class="n">ScaleType</span><span class="o">.</span><span class="n">CATEGORICAL</span>
+            <span class="p">),</span>
+            <span class="n">log_prior</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_prior</span><span class="p">,</span>
+            <span class="n">minimum_noise</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_minimum_noise</span><span class="p">,</span>
+            <span class="n">initial_kernel_params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_kernel_params_cache</span><span class="p">,</span>
+            <span class="n">deterministic_objective</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_deterministic</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_params_cache</span> <span class="o">=</span> <span class="n">kernel_params</span>
+
+        <span class="n">acqf_params</span> <span class="o">=</span> <span class="n">acqf</span><span class="o">.</span><span class="n">create_acqf_params</span><span class="p">(</span>
+            <span class="n">acqf_type</span><span class="o">=</span><span class="n">acqf</span><span class="o">.</span><span class="n">AcquisitionFunctionType</span><span class="o">.</span><span class="n">LOG_EI</span><span class="p">,</span>
+            <span class="n">kernel_params</span><span class="o">=</span><span class="n">kernel_params</span><span class="p">,</span>
+            <span class="n">search_space</span><span class="o">=</span><span class="n">internal_search_space</span><span class="p">,</span>
+            <span class="n">X</span><span class="o">=</span><span class="n">normalized_params</span><span class="p">,</span>
+            <span class="n">Y</span><span class="o">=</span><span class="n">standarized_score_vals</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">normalized_param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimize_acqf</span><span class="p">(</span>
+            <span class="n">acqf_params</span><span class="p">,</span> <span class="n">normalized_params</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">standarized_score_vals</span><span class="p">),</span> <span class="p">:]</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">gp_search_space</span><span class="o">.</span><span class="n">get_unnormalized_param</span><span class="p">(</span><span class="n">search_space</span><span class="p">,</span> <span class="n">normalized_param</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GPSampler.sample_independent">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.GPSampler.html#optuna.samplers.GPSampler.sample_independent">[docs]</a>
+    <span class="k">def</span> <span class="nf">sample_independent</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span>
+        <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span><span class="p">,</span>
+        <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">param_distribution</span><span class="p">:</span> <span class="n">BaseDistribution</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error_if_multi_objective</span><span class="p">(</span><span class="n">study</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span><span class="o">.</span><span class="n">sample_independent</span><span class="p">(</span>
+            <span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">param_distribution</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GPSampler.before_trial">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.GPSampler.html#optuna.samplers.GPSampler.before_trial">[docs]</a>
+    <span class="k">def</span> <span class="nf">before_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span> <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span><span class="o">.</span><span class="n">before_trial</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GPSampler.after_trial">
+<a class="viewcode-back" href="../../../../reference/samplers/generated/optuna.samplers.GPSampler.html#optuna.samplers.GPSampler.after_trial">[docs]</a>
+    <span class="k">def</span> <span class="nf">after_trial</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">study</span><span class="p">:</span> <span class="n">Study</span><span class="p">,</span>
+        <span class="n">trial</span><span class="p">:</span> <span class="n">FrozenTrial</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">TrialState</span><span class="p">,</span>
+        <span class="n">values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_independent_sampler</span><span class="o">.</span><span class="n">after_trial</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Optuna Contributors.
+      <span class="commit">Revision <code>ef16a045</code>.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
