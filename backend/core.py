@@ -1,7 +1,6 @@
-# Import dotenv e carregar variáveis de ambiente
+# Import required packages
 import os
-from dotenv import load_dotenv
-load_dotenv()
+import streamlit as st
 
 # Importar pacotes do langchain
 from langchain.chains.retrieval import create_retrieval_chain
@@ -16,6 +15,12 @@ from langchain_groq import ChatGroq
 
 # Definir função para rodar llm RAG
 def run_llm(query, chat_history=[]):
+    # Set environment variables from Streamlit secrets
+    os.environ["INDEX_NAME"] = st.secrets["INDEX_NAME"]
+    os.environ["VOYAGE_API_KEY"] = st.secrets["VOYAGE_API_KEY"]
+    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+    os.environ["PINECONE_API_KEY"] = st.secrets["PINECONE_API_KEY"]
+
     # Setar modelo de embedding
     emmbeding = VoyageAIEmbeddings(model="voyage-3")
 
