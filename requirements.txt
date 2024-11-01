@@ -1,0 +1,10 @@
+streamlit
+streamlit-chat
+python-dotenv
+langchain
+langchain-groq
+langchain-pinecone
+langchain-voyageai
+langchain-community
+langchain-hub
+pinecone-client
